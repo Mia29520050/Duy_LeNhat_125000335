@@ -17,23 +17,44 @@
   <!-- Thư viện theo yêu cầu đề thi: AOS (Animate On Scroll) -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
 
-  <!-- Stylesheet chính -->
-  <link rel="stylesheet" href="style.css">
+  <!-- Stylesheet chính (Kèm cache buster chống lưu đệm trình duyệt) -->
+  <link rel="stylesheet" href="style.css?v=3.5">
+
+  <style>
+    /* CSS nhúng chống lỗi cache trình duyệt cho Hero Slider */
+    .hero-slider {
+      position: relative;
+      width: 100%;
+      min-height: 88vh;
+      background-color: #070a14;
+      overflow: hidden;
+      padding-top: 68px;
+    }
+    .hero-slide {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+      transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+      transform: scale(1.02);
+      z-index: 1;
+    }
+    .hero-slide.active {
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
+      transform: scale(1);
+      z-index: 2;
+    }
+  </style>
 </head>
 <body>
 
-  <!-- =========================================================================
-       ĐIỀU KHIỂN TRẠNG THÁI BẰNG PURE CSS (Checkbox & Radio)
-       - menu-toggle: Mở/đóng menu di động
-       - slide-1..5: Chuyển đổi 5 Banner Hero khi click hoặc tự động
-       ========================================================================= -->
+  <!-- Checkbox điều khiển Mobile Navigation (Pure CSS, không dùng JS) -->
   <input type="checkbox" id="menu-toggle" class="visually-hidden-ctl" aria-label="Mở menu di động">
-
-  <input type="radio" name="hero-slide" id="slide-1" class="visually-hidden-ctl slide-radio" checked aria-label="Slide 1: Honkai Nexus Anima">
-  <input type="radio" name="hero-slide" id="slide-2" class="visually-hidden-ctl slide-radio" aria-label="Slide 2: Zenless Zone Zero">
-  <input type="radio" name="hero-slide" id="slide-3" class="visually-hidden-ctl slide-radio" aria-label="Slide 3: Honkai Star Rail">
-  <input type="radio" name="hero-slide" id="slide-4" class="visually-hidden-ctl slide-radio" aria-label="Slide 4: Genshin Impact">
-  <input type="radio" name="hero-slide" id="slide-5" class="visually-hidden-ctl slide-radio" aria-label="Slide 5: Honkai Impact 3rd">
 
   <!-- =========================================================================
        1. HEADER: Cố định (Fixed), Nền kính mờ (Backdrop Blur), Logo & Menu chuẩn
@@ -104,10 +125,10 @@
     <!-- =======================================================================
          2. HERO SECTION: Slider 5 Banner chuyển đổi theo thời gian & khi click
          ======================================================================= -->
-    <section id="hero" class="hero-section" aria-label="Khu vực nổi bật">
+    <section id="hero" class="hero-slider" aria-label="Khu vực nổi bật">
 
-      <!-- SLIDE 1: Honkai: Nexus Anima -->
-      <div class="hero-slide hero-slide--1" aria-label="Slide 1: Honkai Nexus Anima">
+      <!-- SLIDE 1: Honkai: Nexus Anima (Active mặc định) -->
+      <div class="hero-slide active" data-slide="0" aria-label="Slide 1: Honkai Nexus Anima">
         <div class="hero-bg-wrapper">
           <img src="assets/images/hero_banner.jpg" alt="HoYoverse Honkai Nexus Anima" class="hero-bg-img">
           <div class="hero-gradient-overlay" aria-hidden="true"></div>
@@ -129,7 +150,7 @@
       </div>
 
       <!-- SLIDE 2: Zenless Zone Zero -->
-      <div class="hero-slide hero-slide--2" aria-label="Slide 2: Zenless Zone Zero">
+      <div class="hero-slide" data-slide="1" aria-label="Slide 2: Zenless Zone Zero">
         <div class="hero-bg-wrapper">
           <img src="assets/images/thumb_zzz.jpg" alt="Zenless Zone Zero 3.2" class="hero-bg-img">
           <div class="hero-gradient-overlay" aria-hidden="true"></div>
@@ -140,7 +161,7 @@
               <img src="assets/images/prod_zzz_icon.png" alt="Icon Zenless Zone Zero" class="hero-badge__icon">
               <span class="hero-badge__text">Zenless Zone Zero</span>
             </div>
-            <h1 class="hero-title">Phiên bản 3.2 "Quá Khứ Bí Ẩn Của Hai Cô Ấy" hiện đã ra mắt!</h1>
+            <h1 class="hero-title">phiên bản 3.2 "Quá Khứ Bí Ẩn Của Hai Cô Ấy" hiện đã ra mắt!</h1>
             <div class="hero-cta-group">
               <a href="https://zenless.hoyoverse.com/vi-vn/" target="_blank" rel="noopener noreferrer" class="btn-hero-primary">
                 Xem thêm
@@ -151,7 +172,7 @@
       </div>
 
       <!-- SLIDE 3: Honkai: Star Rail -->
-      <div class="hero-slide hero-slide--3" aria-label="Slide 3: Honkai Star Rail">
+      <div class="hero-slide" data-slide="2" aria-label="Slide 3: Honkai Star Rail">
         <div class="hero-bg-wrapper">
           <img src="assets/images/thumb_hsr.jpg" alt="Honkai Star Rail 4.6" class="hero-bg-img">
           <div class="hero-gradient-overlay" aria-hidden="true"></div>
@@ -162,7 +183,7 @@
               <img src="assets/images/prod_hsr_icon.png" alt="Icon Honkai Star Rail" class="hero-badge__icon">
               <span class="hero-badge__text">Honkai: Star Rail</span>
             </div>
-            <h1 class="hero-title">Phiên bản 4.6 "Trước Khi Trăng Lên, Khiêu Vũ Cùng Ác Thú" đã mở!</h1>
+            <h1 class="hero-title">Phiên bản 4.6 hiện đã ra mắt!</h1>
             <div class="hero-cta-group">
               <a href="https://hsr.hoyoverse.com/vi-vn/" target="_blank" rel="noopener noreferrer" class="btn-hero-primary">
                 Xem thêm
@@ -173,7 +194,7 @@
       </div>
 
       <!-- SLIDE 4: Genshin Impact -->
-      <div class="hero-slide hero-slide--4" aria-label="Slide 4: Genshin Impact">
+      <div class="hero-slide" data-slide="3" aria-label="Slide 4: Genshin Impact">
         <div class="hero-bg-wrapper">
           <img src="assets/images/thumb_genshin.jpg" alt="Genshin Impact 7.1" class="hero-bg-img">
           <div class="hero-gradient-overlay" aria-hidden="true"></div>
@@ -184,7 +205,7 @@
               <img src="assets/images/prod_genshin_icon.jpg" alt="Icon Genshin Impact Paimon" class="hero-badge__icon">
               <span class="hero-badge__text">Genshin Impact</span>
             </div>
-            <h1 class="hero-title">Thông Tin Mới Nhất Về Phiên Bản 7.1 "Khúc An Hồn Cõi Âm"!</h1>
+            <h1 class="hero-title">Thông Tin Mới Nhất Về Phiên Bản 7.1 "Khúc An Hồn Cõi Âm"</h1>
             <div class="hero-cta-group">
               <a href="https://genshin.hoyoverse.com/vi/" target="_blank" rel="noopener noreferrer" class="btn-hero-primary">
                 Xem thêm
@@ -195,7 +216,7 @@
       </div>
 
       <!-- SLIDE 5: Honkai Impact 3rd -->
-      <div class="hero-slide hero-slide--5" aria-label="Slide 5: Honkai Impact 3rd">
+      <div class="hero-slide" data-slide="4" aria-label="Slide 5: Honkai Impact 3rd">
         <div class="hero-bg-wrapper">
           <img src="assets/images/thumb_hi3.jpg" alt="Honkai Impact 3rd 9.0" class="hero-bg-img">
           <div class="hero-gradient-overlay" aria-hidden="true"></div>
@@ -218,26 +239,26 @@
 
       <!-- Carousel Thumbnails Bar: Click để chuyển đổi tức thì -->
       <aside class="hero-carousel-thumbnails" aria-label="Danh sách chọn tựa game nổi bật">
-        <label for="slide-1" class="thumb-item thumb-item--1" title="Xem Honkai: Nexus Anima">
+        <button type="button" class="thumb-item active" data-thumb="0" aria-label="Xem Honkai: Nexus Anima">
           <img src="assets/images/hero_banner.jpg" alt="Thumb Honkai: Nexus Anima">
-          <span class="thumb-progress" aria-hidden="true"></span>
-        </label>
-        <label for="slide-2" class="thumb-item thumb-item--2" title="Xem Zenless Zone Zero">
+          <span class="thumb-indicator" aria-hidden="true"></span>
+        </button>
+        <button type="button" class="thumb-item" data-thumb="1" aria-label="Xem Zenless Zone Zero">
           <img src="assets/images/thumb_zzz.jpg" alt="Thumb Zenless Zone Zero">
-          <span class="thumb-progress" aria-hidden="true"></span>
-        </label>
-        <label for="slide-3" class="thumb-item thumb-item--3" title="Xem Honkai: Star Rail">
+          <span class="thumb-indicator" aria-hidden="true"></span>
+        </button>
+        <button type="button" class="thumb-item" data-thumb="2" aria-label="Xem Honkai: Star Rail">
           <img src="assets/images/thumb_hsr.jpg" alt="Thumb Honkai: Star Rail">
-          <span class="thumb-progress" aria-hidden="true"></span>
-        </label>
-        <label for="slide-4" class="thumb-item thumb-item--4" title="Xem Genshin Impact">
+          <span class="thumb-indicator" aria-hidden="true"></span>
+        </button>
+        <button type="button" class="thumb-item" data-thumb="3" aria-label="Xem Genshin Impact">
           <img src="assets/images/thumb_genshin.jpg" alt="Thumb Genshin Impact">
-          <span class="thumb-progress" aria-hidden="true"></span>
-        </label>
-        <label for="slide-5" class="thumb-item thumb-item--5" title="Xem Honkai Impact 3rd">
+          <span class="thumb-indicator" aria-hidden="true"></span>
+        </button>
+        <button type="button" class="thumb-item" data-thumb="4" aria-label="Xem Honkai Impact 3rd">
           <img src="assets/images/thumb_hi3.jpg" alt="Thumb Honkai Impact 3rd">
-          <span class="thumb-progress" aria-hidden="true"></span>
-        </label>
+          <span class="thumb-indicator" aria-hidden="true"></span>
+        </button>
       </aside>
 
       <!-- Scroll Indicator chuột cuộn xuống -->
@@ -612,31 +633,66 @@
       easing: 'ease-out-cubic'
     });
 
-    /* Tự động luân chuyển 5 Banner Hero theo thời gian (4.5 giây) */
+    /* =======================================================================
+       BỘ ĐIỀU KHIỂN HERO SLIDER HOYOVERSE:
+       - 1 Slide hiển thị duy nhất tại một thời điểm
+       - Tự động chuyển slide sau mỗi 4.5 giây (Autoplay)
+       - Chuyển tức thì khi click vào bất kỳ Thumbnail nào
+       - Reset chu kỳ khi người dùng click thủ công
+       ======================================================================= */
     (function initHeroSlider() {
-      var radios = document.querySelectorAll('input[name="hero-slide"]');
-      if (!radios.length) return;
-      var cur = 0;
-      var timer = null;
+      var slides = document.querySelectorAll('.hero-slide');
+      var thumbs = document.querySelectorAll('.hero-carousel-thumbnails .thumb-item');
+      if (!slides.length || !thumbs.length) return;
 
-      function startTimer() {
-        clearInterval(timer);
-        timer = setInterval(function() {
-          cur = (cur + 1) % radios.length;
-          radios[cur].checked = true;
-        }, 4500);
+      var currentIndex = 0;
+      var totalSlides = slides.length;
+      var slideInterval = null;
+
+      function goToSlide(index) {
+        if (index < 0 || index >= totalSlides) return;
+        
+        // Cập nhật slide
+        for (var i = 0; i < totalSlides; i++) {
+          if (i === index) {
+            slides[i].classList.add('active');
+            thumbs[i].classList.add('active');
+          } else {
+            slides[i].classList.remove('active');
+            thumbs[i].classList.remove('active');
+          }
+        }
+        currentIndex = index;
       }
 
-      radios.forEach(function(r, idx) {
-        r.addEventListener('change', function() {
-          if (r.checked) {
-            cur = idx;
-            startTimer(); // Làm mới chu kỳ đếm khi người dùng click thủ công
-          }
+      function nextSlide() {
+        var next = (currentIndex + 1) % totalSlides;
+        goToSlide(next);
+      }
+
+      function startAutoPlay() {
+        stopAutoPlay();
+        slideInterval = setInterval(nextSlide, 4500);
+      }
+
+      function stopAutoPlay() {
+        if (slideInterval) {
+          clearInterval(slideInterval);
+          slideInterval = null;
+        }
+      }
+
+      // Lắng nghe sự kiện click trên từng Thumbnail
+      thumbs.forEach(function(thumb, idx) {
+        thumb.addEventListener('click', function(e) {
+          e.preventDefault();
+          goToSlide(idx);
+          startAutoPlay(); // Reset lại nhịp đếm 4.5s sau khi click
         });
       });
 
-      startTimer();
+      // Tự động chạy khi tải trang
+      startAutoPlay();
     })();
   </script>
 </body>
