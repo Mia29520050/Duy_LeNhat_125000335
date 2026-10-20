@@ -153,9 +153,9 @@ button {
   left: 0;
   right: 0;
   height: var(--header-height);
-  background: rgba(10, 12, 20, 0.75);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
+  background: rgba(8, 12, 24, 0.6);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
   border-bottom: 1px solid rgba(255, 255, 255, 0.08);
   z-index: 1000;
   transition: background var(--transition-fast);
@@ -174,16 +174,16 @@ button {
 .header__logo {
   display: flex;
   align-items: center;
-  height: 28px;
+  height: 32px;
   transition: opacity var(--transition-fast);
 }
 
 .header__logo:hover {
-  opacity: 0.9;
+  opacity: 0.92;
 }
 
 .header__logo-svg {
-  height: 26px;
+  height: 30px;
   width: auto;
 }
 
@@ -202,7 +202,7 @@ button {
 .nav-link {
   font-size: 0.9375rem;
   font-weight: 500;
-  color: rgba(255, 255, 255, 0.78);
+  color: rgba(255, 255, 255, 0.85);
   padding: 6px 0;
   position: relative;
   transition: color var(--transition-fast);
@@ -215,18 +215,18 @@ button {
 
 /* Mục đang kích hoạt (Active) */
 .nav-link.active {
-  color: var(--c-primary);
-  font-weight: 700;
+  color: #4ea4f6;
+  font-weight: 600;
 }
 
 .nav-link.active::after {
   content: '';
   position: absolute;
-  bottom: -2px;
+  bottom: -4px;
   left: 0;
   right: 0;
-  height: 2px;
-  background: var(--c-primary);
+  height: 2.5px;
+  background: #4ea4f6;
   border-radius: var(--radius-full);
 }
 
@@ -837,13 +837,32 @@ button {
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
-  transition: var(--transition-smooth);
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  overflow: hidden;
 }
 
-.promo-card:hover {
-  transform: translateY(-6px);
-  border-color: rgba(255, 255, 255, 0.18);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+.promo-card__content {
+  position: relative;
+  z-index: 2;
+}
+
+/* Vòng xoáy nghệ thuật quang học ẩn khi bình thường, hiện khi hover */
+.promo-card__bg-art {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 60%;
+  height: 100%;
+  pointer-events: none;
+  opacity: 0;
+  transform: scale(0.9) translateX(20px);
+  transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1), transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  z-index: 1;
+}
+
+.promo-card__bg-art svg {
+  width: 100%;
+  height: 100%;
 }
 
 .promo-card__title {
@@ -852,6 +871,7 @@ button {
   color: var(--c-white);
   margin-bottom: 14px;
   letter-spacing: -0.01em;
+  transition: color 0.35s ease;
 }
 
 /* Vạch màu cyan đặc trưng của HoYoverse */
@@ -865,6 +885,8 @@ button {
 
 /* Nút mũi tên tròn xanh biển */
 .promo-card__arrow-btn {
+  position: relative;
+  z-index: 2;
   width: 52px;
   height: 52px;
   border-radius: var(--radius-full);
@@ -881,6 +903,25 @@ button {
   font-size: 1.5rem;
   line-height: 1;
   transition: transform var(--transition-fast);
+}
+
+/* =========================================================================
+   HOVER: CẢ 2 CARD TRÁI VÀ PHẢI ĐỔI NỀN TRẮNG, CHỮ ĐEN, HIỆN VÒNG XOÁY 
+   ========================================================================= */
+.promo-card:hover {
+  background: #ffffff !important;
+  border-color: #ffffff;
+  transform: translateY(-6px);
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.35);
+}
+
+.promo-card:hover .promo-card__title {
+  color: #111827 !important;
+}
+
+.promo-card:hover .promo-card__bg-art {
+  opacity: 1;
+  transform: scale(1) translateX(0);
 }
 
 .promo-card:hover .promo-card__arrow-btn {

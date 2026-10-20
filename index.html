@@ -68,10 +68,33 @@
   <header class="header">
     <div class="header__container">
       
-      <!-- Logo HoYoverse chuẩn vector -->
+      <!-- Logo HoYoverse chuẩn vector với biểu tượng Vortex O phát sáng -->
       <a href="#hero" class="header__logo" aria-label="HoYoverse Trang Chủ">
-        <svg class="header__logo-svg" viewBox="0 0 1163 204" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Logo HoYoverse">
-          <text x="0" y="150" font-family="'Plus Jakarta Sans', sans-serif" font-size="160" font-weight="800" fill="#ffffff" letter-spacing="12">HOY<tspan fill="#3b82f6">O</tspan>VERSE</text>
+        <svg class="header__logo-svg" viewBox="0 0 280 38" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Logo HoYoverse">
+          <defs>
+            <linearGradient id="hdrVortex" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#38bdf8"/>
+              <stop offset="50%" stop-color="#818cf8"/>
+              <stop offset="100%" stop-color="#c084fc"/>
+            </linearGradient>
+            <filter id="vortexGlow" x="-30%" y="-30%" width="160%" height="160%">
+              <feGaussianBlur stdDeviation="1.5" result="blur"/>
+              <feMerge>
+                <feMergeNode in="blur"/>
+                <feMergeNode in="SourceGraphic"/>
+              </feMerge>
+            </filter>
+          </defs>
+          <!-- Chữ H -->
+          <path d="M4 8 H10 V16 H22 V8 H28 V30 H22 V22 H10 V30 H4 Z" fill="#ffffff"/>
+          <!-- Biểu tượng Vortex O phát sáng đa sắc -->
+          <g filter="url(#vortexGlow)" transform="translate(46, 19)">
+            <circle cx="0" cy="0" r="10.5" stroke="url(#hdrVortex)" stroke-width="2.5" fill="none"/>
+            <circle cx="0" cy="0" r="6.5" stroke="#38bdf8" stroke-width="1.5" stroke-dasharray="8 4" fill="none"/>
+            <circle cx="0" cy="0" r="2.5" fill="#ffffff"/>
+          </g>
+          <!-- Chữ YOVERSE -->
+          <text x="66" y="26" font-family="'Plus Jakarta Sans', sans-serif" font-size="20" font-weight="800" fill="#ffffff" letter-spacing="4">YOVERSE</text>
         </svg>
       </a>
 
@@ -583,6 +606,20 @@
 
           <!-- Card Về Chúng Tôi -->
           <article id="about" class="promo-card" data-aos="fade-up" data-aos-delay="100">
+            <div class="promo-card__bg-art" aria-hidden="true">
+              <svg viewBox="0 0 320 220" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                  <linearGradient id="swirlGrad1" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#38bdf8" stop-opacity="0.95"/>
+                    <stop offset="50%" stop-color="#c084fc" stop-opacity="0.85"/>
+                    <stop offset="100%" stop-color="#f472b6" stop-opacity="0.9"/>
+                  </linearGradient>
+                </defs>
+                <ellipse cx="205" cy="110" rx="92" ry="86" stroke="url(#swirlGrad1)" stroke-width="3" opacity="0.85"/>
+                <ellipse cx="195" cy="115" rx="74" ry="70" stroke="url(#swirlGrad1)" stroke-width="2" opacity="0.6" stroke-dasharray="14 6"/>
+                <ellipse cx="215" cy="105" rx="108" ry="100" stroke="url(#swirlGrad1)" stroke-width="1.5" opacity="0.35"/>
+              </svg>
+            </div>
             <div class="promo-card__content">
               <h2 class="promo-card__title">Về Chúng Tôi</h2>
               <span class="promo-card__bar" aria-hidden="true"></span>
@@ -594,6 +631,20 @@
 
           <!-- Card Tuyển Dụng -->
           <article id="careers" class="promo-card" data-aos="fade-up" data-aos-delay="200">
+            <div class="promo-card__bg-art" aria-hidden="true">
+              <svg viewBox="0 0 320 220" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                  <linearGradient id="swirlGrad2" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#38bdf8" stop-opacity="0.95"/>
+                    <stop offset="50%" stop-color="#c084fc" stop-opacity="0.85"/>
+                    <stop offset="100%" stop-color="#f472b6" stop-opacity="0.9"/>
+                  </linearGradient>
+                </defs>
+                <ellipse cx="205" cy="110" rx="92" ry="86" stroke="url(#swirlGrad2)" stroke-width="3" opacity="0.85"/>
+                <ellipse cx="195" cy="115" rx="74" ry="70" stroke="url(#swirlGrad2)" stroke-width="2" opacity="0.6" stroke-dasharray="14 6"/>
+                <ellipse cx="215" cy="105" rx="108" ry="100" stroke="url(#swirlGrad2)" stroke-width="1.5" opacity="0.35"/>
+              </svg>
+            </div>
             <div class="promo-card__content">
               <h2 class="promo-card__title">Tuyển Dụng</h2>
               <span class="promo-card__bar" aria-hidden="true"></span>
