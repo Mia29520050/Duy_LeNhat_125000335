@@ -56,6 +56,23 @@
 
 ---
 
+### Lần 4: Nâng cấp Vibe Coding chuyên sâu - Thoát khỏi giao diện mẫu AI, thêm Dark/Light Mode & Accordion Game Cards
+- **Prompt đã dùng:**  
+  "Giao diện hiện tại trông còn hơi rập khuôn dạng template AI, chưa toát lên thần thái gaming đẳng cấp như web thật của HoYoverse. Hãy thiết kế lại toàn diện:
+  1. Thêm công tắc chuyển đổi Chế độ Sáng / Tối (Dark / Light Mode) nhưng bắt buộc chỉ dùng HTML và CSS thuần (Pure CSS checkbox trick với general sibling combinator `~`), tuyệt đối không dùng JavaScript.
+  2. Tái hiện phong cách Accordion Flex Cards mở rộng khi hover đặc trưng của HoYoverse cho khu vực danh sách Game (mặc định thẻ đầu mở rộng, khi rê chuột vào thẻ nào thì thẻ đó bung rộng mượt mà với hiệu ứng shimmer tia sáng).
+  3. Hoàn thiện Responsive di động với Drawer Navigation trượt mượt mà, đầy đủ các breakpoint (480px, 768px, 1024px, 1280px).
+  4. Nâng tầm Typography với Google Fonts (Outfit & DM Serif Display) và viền ánh sáng tinh tế."
+- **Kết quả AI tạo ra:**  
+  AI đã tái cấu trúc toàn diện `index.html` và `style.css`:
+  - Cơ chế Dark/Light Mode thuần CSS cực kỳ sáng tạo: đặt `<input type="checkbox" id="theme-ctl">` ngay trước `.site-wrap`, khi kích hoạt checkbox thì toàn bộ hệ thống biến `:root` được ghi đè sang bảng màu sáng dịu mắt (Light Mode).
+  - Phần Featured Games được chuyển đổi thành hệ thống Accordion Flex Cards ấn tượng: thẻ game đang kích hoạt tự động giãn rộng chiếm tỷ lệ `flex: 4`, các thẻ phụ thu gọn `flex: 1`, khi hover thẻ nào thẻ đó phóng to kèm lớp phủ ánh sáng shimmer sang trọng.
+  - Menu burger trên điện thoại cũng sử dụng checkbox hack thuần CSS, đóng mở êm ái mà không cần bất kỳ dòng mã JavaScript nào.
+- **Nhận xét & Tinh chỉnh của SV:**  
+  Trang web hoàn toàn lột xác, mang đậm phong cách HoYoverse chính thống, loại bỏ triệt để cảm giác 'AI template', đáp ứng 100% tiêu chí đề thi: vừa đẹp mắt, vừa đúng chuẩn kỹ thuật Semantic HTML5, CSS thuần, Responsive và đầy đủ hiệu ứng tương tác.
+
+---
+
 ## 3. Đánh giá cá nhân về quá trình Vibe Coding
 
 ### AI đã giúp bạn tiết kiệm thời gian ở phần nào nhất?
