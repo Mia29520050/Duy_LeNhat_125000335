@@ -22,8 +22,18 @@
 </head>
 <body>
 
-  <!-- Checkbox điều khiển Mobile Navigation (Pure CSS, không dùng JS) -->
-  <input type="checkbox" id="menu-toggle" class="menu-toggle" aria-label="Mở menu di động">
+  <!-- =========================================================================
+       ĐIỀU KHIỂN TRẠNG THÁI BẰNG PURE CSS (Checkbox & Radio)
+       - menu-toggle: Mở/đóng menu di động
+       - slide-1..5: Chuyển đổi 5 Banner Hero khi click hoặc tự động
+       ========================================================================= -->
+  <input type="checkbox" id="menu-toggle" class="visually-hidden-ctl" aria-label="Mở menu di động">
+
+  <input type="radio" name="hero-slide" id="slide-1" class="visually-hidden-ctl slide-radio" checked aria-label="Slide 1: Honkai Nexus Anima">
+  <input type="radio" name="hero-slide" id="slide-2" class="visually-hidden-ctl slide-radio" aria-label="Slide 2: Zenless Zone Zero">
+  <input type="radio" name="hero-slide" id="slide-3" class="visually-hidden-ctl slide-radio" aria-label="Slide 3: Honkai Star Rail">
+  <input type="radio" name="hero-slide" id="slide-4" class="visually-hidden-ctl slide-radio" aria-label="Slide 4: Genshin Impact">
+  <input type="radio" name="hero-slide" id="slide-5" class="visually-hidden-ctl slide-radio" aria-label="Slide 5: Honkai Impact 3rd">
 
   <!-- =========================================================================
        1. HEADER: Cố định (Fixed), Nền kính mờ (Backdrop Blur), Logo & Menu chuẩn
@@ -34,7 +44,6 @@
       <!-- Logo HoYoverse chuẩn vector -->
       <a href="#hero" class="header__logo" aria-label="HoYoverse Trang Chủ">
         <svg class="header__logo-svg" viewBox="0 0 1163 204" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Logo HoYoverse">
-          <!-- Text Vector HoYoverse tinh tế sắc nét -->
           <text x="0" y="150" font-family="'Plus Jakarta Sans', sans-serif" font-size="160" font-weight="800" fill="#ffffff" letter-spacing="12">HOY<tspan fill="#3b82f6">O</tspan>VERSE</text>
         </svg>
       </a>
@@ -93,64 +102,151 @@
   <main class="main-content">
 
     <!-- =======================================================================
-         2. HERO SECTION: Trực quan, Rõ nét, Key Visual HoYoverse chính thức
+         2. HERO SECTION: Slider 5 Banner chuyển đổi theo thời gian & khi click
          ======================================================================= -->
     <section id="hero" class="hero-section" aria-label="Khu vực nổi bật">
-      <div class="hero-bg-wrapper">
-        <img src="assets/images/hero_banner.jpg" alt="HoYoverse Key Visual Honkai Nexus Anima" class="hero-bg-img">
-        <div class="hero-gradient-overlay" aria-hidden="true"></div>
+
+      <!-- SLIDE 1: Honkai: Nexus Anima -->
+      <div class="hero-slide hero-slide--1" aria-label="Slide 1: Honkai Nexus Anima">
+        <div class="hero-bg-wrapper">
+          <img src="assets/images/hero_banner.jpg" alt="HoYoverse Honkai Nexus Anima" class="hero-bg-img">
+          <div class="hero-gradient-overlay" aria-hidden="true"></div>
+        </div>
+        <div class="hero-container">
+          <div class="hero-content">
+            <div class="hero-badge">
+              <img src="assets/images/icon_nexus.png" alt="Icon Honkai Nexus Anima" class="hero-badge__icon">
+              <span class="hero-badge__text">Honkai: Nexus Anima</span>
+            </div>
+            <h1 class="hero-title">Đăng ký trước cho Honkai: Nexus Anima ngay hôm nay!</h1>
+            <div class="hero-cta-group">
+              <a href="https://www.hoyoverse.com/vi-vn/" target="_blank" rel="noopener noreferrer" class="btn-hero-primary">
+                Xem thêm
+              </a>
+            </div>
+          </div>
+        </div>
       </div>
 
-      <div class="hero-container">
-        <div class="hero-content animate__animated animate__fadeInLeft">
-          
-          <!-- App Icon & Game Label -->
-          <div class="hero-badge">
-            <img src="assets/images/icon_nexus.png" alt="Biểu tượng Honkai: Nexus Anima" class="hero-badge__icon">
-            <span class="hero-badge__text">Honkai: Nexus Anima</span>
-          </div>
-
-          <!-- Main Title -->
-          <h1 class="hero-title">
-            Đăng ký trước cho Honkai: Nexus Anima ngay hôm nay!
-          </h1>
-
-          <!-- CTA Button -->
-          <div class="hero-cta-group">
-            <a href="https://www.hoyoverse.com/vi-vn/" target="_blank" rel="noopener noreferrer" class="btn-hero-primary">
-              Xem thêm
-            </a>
-          </div>
-
+      <!-- SLIDE 2: Zenless Zone Zero -->
+      <div class="hero-slide hero-slide--2" aria-label="Slide 2: Zenless Zone Zero">
+        <div class="hero-bg-wrapper">
+          <img src="assets/images/thumb_zzz.jpg" alt="Zenless Zone Zero 3.2" class="hero-bg-img">
+          <div class="hero-gradient-overlay" aria-hidden="true"></div>
         </div>
-
-        <!-- Carousel Thumbnails Preview (Góc dưới bên phải) -->
-        <aside class="hero-carousel-thumbnails" aria-label="Các tựa game nổi bật khác">
-          <div class="thumb-item active" title="Honkai: Nexus Anima">
-            <img src="assets/images/hero_banner.jpg" alt="Honkai: Nexus Anima">
+        <div class="hero-container">
+          <div class="hero-content">
+            <div class="hero-badge">
+              <img src="assets/images/prod_zzz_icon.png" alt="Icon Zenless Zone Zero" class="hero-badge__icon">
+              <span class="hero-badge__text">Zenless Zone Zero</span>
+            </div>
+            <h1 class="hero-title">Phiên bản 3.2 "Quá Khứ Bí Ẩn Của Hai Cô Ấy" hiện đã ra mắt!</h1>
+            <div class="hero-cta-group">
+              <a href="https://zenless.hoyoverse.com/vi-vn/" target="_blank" rel="noopener noreferrer" class="btn-hero-primary">
+                Xem thêm
+              </a>
+            </div>
           </div>
-          <div class="thumb-item" title="Zenless Zone Zero 3.2">
-            <img src="assets/images/thumb_zzz.jpg" alt="Zenless Zone Zero 3.2">
-          </div>
-          <div class="thumb-item" title="Honkai: Star Rail 4.6">
-            <img src="assets/images/thumb_hsr.jpg" alt="Honkai: Star Rail 4.6">
-          </div>
-          <div class="thumb-item" title="Genshin Impact 7.1">
-            <img src="assets/images/thumb_genshin.jpg" alt="Genshin Impact 7.1">
-          </div>
-          <div class="thumb-item" title="Honkai Impact 3rd 9.0">
-            <img src="assets/images/thumb_hi3.jpg" alt="Honkai Impact 3rd 9.0">
-          </div>
-        </aside>
-
-        <!-- Scroll Indicator chuột cuộn xuống -->
-        <div class="hero-scroll-indicator" aria-hidden="true">
-          <span class="scroll-mouse">
-            <span class="scroll-wheel"></span>
-          </span>
         </div>
-
       </div>
+
+      <!-- SLIDE 3: Honkai: Star Rail -->
+      <div class="hero-slide hero-slide--3" aria-label="Slide 3: Honkai Star Rail">
+        <div class="hero-bg-wrapper">
+          <img src="assets/images/thumb_hsr.jpg" alt="Honkai Star Rail 4.6" class="hero-bg-img">
+          <div class="hero-gradient-overlay" aria-hidden="true"></div>
+        </div>
+        <div class="hero-container">
+          <div class="hero-content">
+            <div class="hero-badge">
+              <img src="assets/images/prod_hsr_icon.png" alt="Icon Honkai Star Rail" class="hero-badge__icon">
+              <span class="hero-badge__text">Honkai: Star Rail</span>
+            </div>
+            <h1 class="hero-title">Phiên bản 4.6 "Trước Khi Trăng Lên, Khiêu Vũ Cùng Ác Thú" đã mở!</h1>
+            <div class="hero-cta-group">
+              <a href="https://hsr.hoyoverse.com/vi-vn/" target="_blank" rel="noopener noreferrer" class="btn-hero-primary">
+                Xem thêm
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SLIDE 4: Genshin Impact -->
+      <div class="hero-slide hero-slide--4" aria-label="Slide 4: Genshin Impact">
+        <div class="hero-bg-wrapper">
+          <img src="assets/images/thumb_genshin.jpg" alt="Genshin Impact 7.1" class="hero-bg-img">
+          <div class="hero-gradient-overlay" aria-hidden="true"></div>
+        </div>
+        <div class="hero-container">
+          <div class="hero-content">
+            <div class="hero-badge">
+              <img src="assets/images/prod_genshin_icon.jpg" alt="Icon Genshin Impact Paimon" class="hero-badge__icon">
+              <span class="hero-badge__text">Genshin Impact</span>
+            </div>
+            <h1 class="hero-title">Thông Tin Mới Nhất Về Phiên Bản 7.1 "Khúc An Hồn Cõi Âm"!</h1>
+            <div class="hero-cta-group">
+              <a href="https://genshin.hoyoverse.com/vi/" target="_blank" rel="noopener noreferrer" class="btn-hero-primary">
+                Xem thêm
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SLIDE 5: Honkai Impact 3rd -->
+      <div class="hero-slide hero-slide--5" aria-label="Slide 5: Honkai Impact 3rd">
+        <div class="hero-bg-wrapper">
+          <img src="assets/images/thumb_hi3.jpg" alt="Honkai Impact 3rd 9.0" class="hero-bg-img">
+          <div class="hero-gradient-overlay" aria-hidden="true"></div>
+        </div>
+        <div class="hero-container">
+          <div class="hero-content">
+            <div class="hero-badge">
+              <img src="assets/images/prod_hi3_icon.jpg" alt="Icon Honkai Impact 3rd" class="hero-badge__icon">
+              <span class="hero-badge__text">Honkai Impact 3rd</span>
+            </div>
+            <h1 class="hero-title">Phiên bản 9.0 [Ánh Bình Minh Hướng Tới Tương Lai] Hiện đã mở!</h1>
+            <div class="hero-cta-group">
+              <a href="https://honkaiimpact3.hoyoverse.com/global/vi-vn/" target="_blank" rel="noopener noreferrer" class="btn-hero-primary">
+                Xem thêm
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Carousel Thumbnails Bar: Click để chuyển đổi tức thì -->
+      <aside class="hero-carousel-thumbnails" aria-label="Danh sách chọn tựa game nổi bật">
+        <label for="slide-1" class="thumb-item thumb-item--1" title="Xem Honkai: Nexus Anima">
+          <img src="assets/images/hero_banner.jpg" alt="Thumb Honkai: Nexus Anima">
+          <span class="thumb-progress" aria-hidden="true"></span>
+        </label>
+        <label for="slide-2" class="thumb-item thumb-item--2" title="Xem Zenless Zone Zero">
+          <img src="assets/images/thumb_zzz.jpg" alt="Thumb Zenless Zone Zero">
+          <span class="thumb-progress" aria-hidden="true"></span>
+        </label>
+        <label for="slide-3" class="thumb-item thumb-item--3" title="Xem Honkai: Star Rail">
+          <img src="assets/images/thumb_hsr.jpg" alt="Thumb Honkai: Star Rail">
+          <span class="thumb-progress" aria-hidden="true"></span>
+        </label>
+        <label for="slide-4" class="thumb-item thumb-item--4" title="Xem Genshin Impact">
+          <img src="assets/images/thumb_genshin.jpg" alt="Thumb Genshin Impact">
+          <span class="thumb-progress" aria-hidden="true"></span>
+        </label>
+        <label for="slide-5" class="thumb-item thumb-item--5" title="Xem Honkai Impact 3rd">
+          <img src="assets/images/thumb_hi3.jpg" alt="Thumb Honkai Impact 3rd">
+          <span class="thumb-progress" aria-hidden="true"></span>
+        </label>
+      </aside>
+
+      <!-- Scroll Indicator chuột cuộn xuống -->
+      <div class="hero-scroll-indicator" aria-hidden="true">
+        <span class="scroll-mouse">
+          <span class="scroll-wheel"></span>
+        </span>
+      </div>
+
     </section>
 
     <!-- =======================================================================
@@ -506,7 +602,7 @@
     </div>
   </footer>
 
-  <!-- Script khởi tạo thư viện AOS duy nhất (Tuân thủ đề thi) -->
+  <!-- Thư viện AOS cho hiệu ứng cuộn trang (Bắt buộc theo đề thi) -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
   <script>
     AOS.init({
@@ -515,6 +611,33 @@
       offset: 60,
       easing: 'ease-out-cubic'
     });
+
+    /* Tự động luân chuyển 5 Banner Hero theo thời gian (4.5 giây) */
+    (function initHeroSlider() {
+      var radios = document.querySelectorAll('input[name="hero-slide"]');
+      if (!radios.length) return;
+      var cur = 0;
+      var timer = null;
+
+      function startTimer() {
+        clearInterval(timer);
+        timer = setInterval(function() {
+          cur = (cur + 1) % radios.length;
+          radios[cur].checked = true;
+        }, 4500);
+      }
+
+      radios.forEach(function(r, idx) {
+        r.addEventListener('change', function() {
+          if (r.checked) {
+            cur = idx;
+            startTimer(); // Làm mới chu kỳ đếm khi người dùng click thủ công
+          }
+        });
+      });
+
+      startTimer();
+    })();
   </script>
 </body>
 </html>

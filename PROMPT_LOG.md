@@ -91,6 +91,20 @@
 
 ---
 
+### Lần 6: Tích hợp Slider Hero Banner tương tác (Tự động chuyển đổi chu kỳ 4.5s & Click tức thì)
+- **Prompt đã dùng:**  
+  "Website HoYoverse có tính năng Hero Banner tự động chuyển đổi slide theo chu kỳ thời gian và khi người dùng click vào các thẻ thumbnail ở góc dưới bên phải thì phải chuyển ngay lập tức sang tựa game tương ứng. Hãy hiện thực tính năng này:
+  1. Quản lý trạng thái chuyển đổi trực quan bằng Pure CSS kết hợp các thẻ `<input type=\"radio\" name=\"hero-slide\">` và CSS Combinator (`~`), đảm bảo hiệu ứng fade-in, scale nhẹ và thanh tiến trình chạy (progress bar) hoạt động mượt mà.
+  2. Bổ sung script tự động kích hoạt chuyển slide sau mỗi 4.5 giây và tự động làm mới chu kỳ khi người dùng chủ động click chọn game."
+- **Kết quả AI tạo ra:**  
+  AI đã hoàn thiện hệ thống Slider 5 tựa game đỉnh cao (*Honkai: Nexus Anima, Zenless Zone Zero, Honkai: Star Rail, Genshin Impact, Honkai Impact 3rd*):
+  - Khi xem tự nhiên: Cứ mỗi 4.5s banner tự động chuyển tiếp êm dịu, thanh tiến trình màu xanh dưới thumbnail chạy mượt mà từ 0% đến 100%.
+  - Khi click vào bất kỳ thumbnail nào: Slide tương ứng kích hoạt lập tức, hình nền, app icon và tiêu đề đổi tức thì.
+- **Nhận xét & Tinh chỉnh của SV:**  
+  Trải nghiệm người dùng đạt độ chân thực 100% so với trang web gốc của HoYoverse.
+
+---
+
 ## 3. Đánh giá cá nhân về quá trình Vibe Coding
 
 ### AI đã giúp bạn tiết kiệm thời gian ở phần nào nhất?
