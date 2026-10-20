@@ -17,10 +17,24 @@
   <!-- Thư viện theo yêu cầu đề thi: AOS (Animate On Scroll) -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
 
-  <!-- Stylesheet chính (Kèm cache buster v4.0) -->
-  <link rel="stylesheet" href="style.css?v=4.0">
+  <!-- Stylesheet chính (Kèm cache buster v5.0) -->
+  <link rel="stylesheet" href="style.css?v=5.0">
 
   <style>
+    /* Header kính mờ (Backdrop Blur chuẩn HoYoverse) */
+    .header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 68px;
+      background: rgba(7, 10, 20, 0.68) !important;
+      backdrop-filter: blur(24px) saturate(160%) !important;
+      -webkit-backdrop-filter: blur(24px) saturate(160%) !important;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      z-index: 1000;
+    }
+
     /* CSS nhúng chống lỗi cache trình duyệt cho Hero Full Viewport & Slider */
     .hero-slider {
       position: relative;
@@ -55,6 +69,64 @@
       0% { width: 0%; }
       100% { width: 100%; }
     }
+
+    /* CSS nhúng chống cache cho Thẻ Về Chúng Tôi & Tuyển Dụng */
+    .promo-card {
+      position: relative;
+      background-color: #141b2d !important;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 16px;
+      padding: 56px 48px;
+      min-height: 220px;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      text-decoration: none !important;
+      cursor: pointer !important;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+      transition: background-color 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+                  border-color 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+                  transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+                  box-shadow 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .promo-card:hover {
+      background-color: #ffffff !important;
+      border-color: #ffffff !important;
+      transform: translateY(-6px);
+      box-shadow: 0 20px 45px rgba(0, 0, 0, 0.3);
+    }
+    .promo-card .promo-card__title {
+      color: #ffffff !important;
+      transition: color 0.35s ease;
+    }
+    .promo-card:hover .promo-card__title {
+      color: #111827 !important;
+    }
+    .promo-card__bg-art {
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 65%;
+      height: 100%;
+      pointer-events: none;
+      opacity: 0;
+      transform: scale(0.92) translateX(15px);
+      transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1), transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      z-index: 1;
+    }
+    .promo-card:hover .promo-card__bg-art {
+      opacity: 1 !important;
+      transform: scale(1) translateX(0) !important;
+    }
+    .promo-card .promo-card__arrow-btn {
+      transition: background-color 0.35s ease, transform 0.35s ease, box-shadow 0.35s ease;
+    }
+    .promo-card:hover .promo-card__arrow-btn {
+      background-color: #2563eb !important;
+      transform: scale(1.08);
+      box-shadow: 0 6px 20px rgba(37, 99, 235, 0.45);
+    }
   </style>
 </head>
 <body>
@@ -69,7 +141,7 @@
     <div class="header__container">
       
       <!-- Logo HoYoverse chuẩn vector với biểu tượng Vortex O phát sáng -->
-      <a href="#hero" class="header__logo" aria-label="HoYoverse Trang Chủ">
+      <a href="./" class="header__logo" id="headerLogo" aria-label="HoYoverse Trang Chủ">
         <svg class="header__logo-svg" viewBox="0 0 280 38" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Logo HoYoverse">
           <defs>
             <linearGradient id="hdrVortex" x1="0%" y1="0%" x2="100%" y2="100%">
@@ -605,54 +677,84 @@
         <div class="promo-grid">
 
           <!-- Card Về Chúng Tôi -->
-          <article id="about" class="promo-card" data-aos="fade-up" data-aos-delay="100">
+          <a href="https://www.hoyoverse.com/vi-vn/about-us" target="_blank" rel="noopener noreferrer" id="about" class="promo-card" data-aos="fade-up" data-aos-delay="100" aria-label="Xem chi tiết Về Chúng Tôi">
             <div class="promo-card__bg-art" aria-hidden="true">
-              <svg viewBox="0 0 320 220" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <svg viewBox="0 0 360 220" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet">
                 <defs>
-                  <linearGradient id="swirlGrad1" x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" stop-color="#38bdf8" stop-opacity="0.95"/>
-                    <stop offset="50%" stop-color="#c084fc" stop-opacity="0.85"/>
-                    <stop offset="100%" stop-color="#f472b6" stop-opacity="0.9"/>
+                  <linearGradient id="swirlGrad1" x1="10%" y1="10%" x2="90%" y2="90%">
+                    <stop offset="0%" stop-color="#38bdf8"/>
+                    <stop offset="45%" stop-color="#818cf8"/>
+                    <stop offset="75%" stop-color="#c084fc"/>
+                    <stop offset="100%" stop-color="#f472b6"/>
                   </linearGradient>
+                  <linearGradient id="swirlGrad1B" x1="0%" y1="50%" x2="100%" y2="50%">
+                    <stop offset="0%" stop-color="#00d2c4" stop-opacity="0.85"/>
+                    <stop offset="50%" stop-color="#818cf8" stop-opacity="0.9"/>
+                    <stop offset="100%" stop-color="#fb7185" stop-opacity="0.85"/>
+                  </linearGradient>
+                  <filter id="swirlGlow1" x="-20%" y="-20%" width="140%" height="140%">
+                    <feGaussianBlur stdDeviation="3.5" result="glow"/>
+                    <feMerge>
+                      <feMergeNode in="glow"/>
+                      <feMergeNode in="SourceGraphic"/>
+                    </feMerge>
+                  </filter>
                 </defs>
-                <ellipse cx="205" cy="110" rx="92" ry="86" stroke="url(#swirlGrad1)" stroke-width="3" opacity="0.85"/>
-                <ellipse cx="195" cy="115" rx="74" ry="70" stroke="url(#swirlGrad1)" stroke-width="2" opacity="0.6" stroke-dasharray="14 6"/>
-                <ellipse cx="215" cy="105" rx="108" ry="100" stroke="url(#swirlGrad1)" stroke-width="1.5" opacity="0.35"/>
+                <ellipse cx="235" cy="110" rx="92" ry="76" fill="url(#swirlGrad1)" opacity="0.1" filter="url(#swirlGlow1)" />
+                <ellipse cx="235" cy="110" rx="108" ry="86" stroke="url(#swirlGrad1)" stroke-width="3" stroke-linecap="round" transform="rotate(-15 235 110)" filter="url(#swirlGlow1)"/>
+                <ellipse cx="235" cy="110" rx="84" ry="68" stroke="url(#swirlGrad1B)" stroke-width="2.2" stroke-linecap="round" transform="rotate(-25 235 110)"/>
+                <ellipse cx="235" cy="110" rx="60" ry="50" stroke="url(#swirlGrad1)" stroke-width="2" stroke-dasharray="16 8" stroke-linecap="round" transform="rotate(-5 235 110)"/>
+                <ellipse cx="235" cy="110" rx="38" ry="32" stroke="url(#swirlGrad1B)" stroke-width="1.5" opacity="0.75" transform="rotate(-35 235 110)"/>
               </svg>
             </div>
             <div class="promo-card__content">
               <h2 class="promo-card__title">Về Chúng Tôi</h2>
               <span class="promo-card__bar" aria-hidden="true"></span>
             </div>
-            <a href="https://www.hoyoverse.com/vi-vn/about-us" target="_blank" rel="noopener noreferrer" class="promo-card__arrow-btn" aria-label="Xem chi tiết Về Chúng Tôi">
-              <span class="arrow-icon" aria-hidden="true">→</span>
-            </a>
-          </article>
+            <div class="promo-card__arrow-btn" aria-hidden="true">
+              <span class="arrow-icon">→</span>
+            </div>
+          </a>
 
           <!-- Card Tuyển Dụng -->
-          <article id="careers" class="promo-card" data-aos="fade-up" data-aos-delay="200">
+          <a href="https://www.hoyoverse.com/vi-vn/careers" target="_blank" rel="noopener noreferrer" id="careers" class="promo-card" data-aos="fade-up" data-aos-delay="200" aria-label="Xem chi tiết Tuyển Dụng">
             <div class="promo-card__bg-art" aria-hidden="true">
-              <svg viewBox="0 0 320 220" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <svg viewBox="0 0 360 220" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet">
                 <defs>
-                  <linearGradient id="swirlGrad2" x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" stop-color="#38bdf8" stop-opacity="0.95"/>
-                    <stop offset="50%" stop-color="#c084fc" stop-opacity="0.85"/>
-                    <stop offset="100%" stop-color="#f472b6" stop-opacity="0.9"/>
+                  <linearGradient id="swirlGrad2" x1="10%" y1="10%" x2="90%" y2="90%">
+                    <stop offset="0%" stop-color="#38bdf8"/>
+                    <stop offset="45%" stop-color="#818cf8"/>
+                    <stop offset="75%" stop-color="#c084fc"/>
+                    <stop offset="100%" stop-color="#f472b6"/>
                   </linearGradient>
+                  <linearGradient id="swirlGrad2B" x1="0%" y1="50%" x2="100%" y2="50%">
+                    <stop offset="0%" stop-color="#00d2c4" stop-opacity="0.85"/>
+                    <stop offset="50%" stop-color="#818cf8" stop-opacity="0.9"/>
+                    <stop offset="100%" stop-color="#fb7185" stop-opacity="0.85"/>
+                  </linearGradient>
+                  <filter id="swirlGlow2" x="-20%" y="-20%" width="140%" height="140%">
+                    <feGaussianBlur stdDeviation="3.5" result="glow"/>
+                    <feMerge>
+                      <feMergeNode in="glow"/>
+                      <feMergeNode in="SourceGraphic"/>
+                    </feMerge>
+                  </filter>
                 </defs>
-                <ellipse cx="205" cy="110" rx="92" ry="86" stroke="url(#swirlGrad2)" stroke-width="3" opacity="0.85"/>
-                <ellipse cx="195" cy="115" rx="74" ry="70" stroke="url(#swirlGrad2)" stroke-width="2" opacity="0.6" stroke-dasharray="14 6"/>
-                <ellipse cx="215" cy="105" rx="108" ry="100" stroke="url(#swirlGrad2)" stroke-width="1.5" opacity="0.35"/>
+                <ellipse cx="235" cy="110" rx="92" ry="76" fill="url(#swirlGrad2)" opacity="0.1" filter="url(#swirlGlow2)" />
+                <ellipse cx="235" cy="110" rx="108" ry="86" stroke="url(#swirlGrad2)" stroke-width="3" stroke-linecap="round" transform="rotate(-15 235 110)" filter="url(#swirlGlow2)"/>
+                <ellipse cx="235" cy="110" rx="84" ry="68" stroke="url(#swirlGrad2B)" stroke-width="2.2" stroke-linecap="round" transform="rotate(-25 235 110)"/>
+                <ellipse cx="235" cy="110" rx="60" ry="50" stroke="url(#swirlGrad2)" stroke-width="2" stroke-dasharray="16 8" stroke-linecap="round" transform="rotate(-5 235 110)"/>
+                <ellipse cx="235" cy="110" rx="38" ry="32" stroke="url(#swirlGrad2B)" stroke-width="1.5" opacity="0.75" transform="rotate(-35 235 110)"/>
               </svg>
             </div>
             <div class="promo-card__content">
               <h2 class="promo-card__title">Tuyển Dụng</h2>
               <span class="promo-card__bar" aria-hidden="true"></span>
             </div>
-            <a href="https://www.hoyoverse.com/vi-vn/careers" target="_blank" rel="noopener noreferrer" class="promo-card__arrow-btn" aria-label="Xem chi tiết Tuyển Dụng">
-              <span class="arrow-icon" aria-hidden="true">→</span>
-            </a>
-          </article>
+            <div class="promo-card__arrow-btn" aria-hidden="true">
+              <span class="arrow-icon">→</span>
+            </div>
+          </a>
 
         </div>
       </div>
@@ -790,6 +892,57 @@
       // Bắt đầu chạy ngay khi load trang
       goToSlide(0);
       startAutoPlay();
+    })();
+
+    /* =======================================================================
+       QUẢN LÝ CUỘN TRANG & TƯƠNG TÁC LOGO / F5:
+       - F5 hoặc Reload trang luôn luôn bắt đầu từ đỉnh trang (Scroll to Top)
+       - Click vào Logo HoYoverse cuộn mượt về đầu trang & reset URL
+       - Đảm bảo trải nghiệm chuyển động mượt mà
+       ======================================================================= */
+    (function initScrollAndLogoBehavior() {
+      // Vô hiệu hóa tính năng tự khôi phục vị trí cuộn cũ của trình duyệt khi F5
+      if ('scrollRestoration' in history) {
+        history.scrollRestoration = 'manual';
+      }
+
+      // Đưa về đỉnh trang khi tải hoặc trước khi thoát trang
+      window.scrollTo(0, 0);
+
+      window.addEventListener('beforeunload', function() {
+        window.scrollTo(0, 0);
+      });
+
+      window.addEventListener('DOMContentLoaded', function() {
+        window.scrollTo(0, 0);
+      });
+
+      // Xử lý sự kiện click trên Logo HoYoverse
+      var headerLogo = document.getElementById('headerLogo');
+      if (headerLogo) {
+        headerLogo.addEventListener('click', function(e) {
+          e.preventDefault();
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+          if (window.location.hash) {
+            history.replaceState(null, null, window.location.pathname);
+          }
+          // Tải lại trang sau khi cuộn về đầu
+          setTimeout(function() {
+            window.location.href = window.location.pathname;
+          }, 200);
+        });
+      }
+
+      // Xử lý click trên các link "Trang Chủ"
+      document.querySelectorAll('a[href="#hero"]').forEach(function(link) {
+        link.addEventListener('click', function(e) {
+          e.preventDefault();
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+          if (window.location.hash) {
+            history.replaceState(null, null, window.location.pathname);
+          }
+        });
+      });
     })();
   </script>
 </body>

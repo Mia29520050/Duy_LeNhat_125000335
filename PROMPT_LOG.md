@@ -105,6 +105,24 @@
 
 ---
 
+### Lần 7: Tinh chỉnh Tương tác Nâng cao (Hero Full Viewport, Thanh Thời Gian Trắng, Hover Thẻ Về Chúng Tôi & Tuyển Dụng, Header Blur & Scroll to Top)
+- **Prompt đã dùng:**  
+  "Tinh chỉnh toàn diện các chi tiết tương tác theo ảnh mẫu thực tế từ HoYoverse:
+  1. Hero Banner Full 100vh với thanh thời gian màu TRẮNG chạy mượt mà từ trái sang phải dưới Thumbnail đang kích hoạt.
+  2. Hiệu ứng Hover đồng bộ cho cả 2 thẻ 'Về Chúng Tôi' & 'Tuyển Dụng': Trạng thái thường nền xanh đen vũ trụ (#141b2d), tiêu đề trắng, vạch cyan và nút mũi tên xanh. Khi rê chuột vào (Hover), nền thẻ lập tức chuyển sang màu TRẮNG tinh khôi (#ffffff), tiêu đề chuyển sang màu ĐEN đậm (#111827), và phía bên phải xuất hiện vòng xoáy nghệ thuật quang học đa sắc (Iridescent Gradient Swirl Rings: Cyan -> Tím -> Hồng).
+  3. Header thiết kế lại với hiệu ứng kính mờ sâu (Deep Frosted Glass Blur: `backdrop-filter: blur(24px) saturate(160%)`), logo vector phát sáng với biểu tượng Vortex O.
+  4. Khắc phục hành vi cuộn trang: Khi nhấn phím F5 hoặc click vào Logo HoYoverse, trang web luôn tự động cuộn về đỉnh trang (`window.scrollTo(0, 0)` kết hợp `history.scrollRestoration = 'manual'`).
+  5. Liên kết 'Trung Tâm Trợ Giúp' trỏ chính xác về cổng dịch vụ khách hàng HoYoverse CSC."
+- **Kết quả AI tạo ra:**  
+  AI đã hoàn thiện toàn bộ các tính năng tương tác với độ sắc nét và mượt mà tuyệt đối:
+  - Cả 2 thẻ 'Về Chúng Tôi' và 'Tuyển Dụng' đều chuyển sang thẻ liên kết `<a>` toàn diện, khi hover đổi nền trắng, chữ đen và vòng xoáy SVG đa sắc chuyển màu êm ái.
+  - Header blur sang trọng, thanh lịch, làm nổi bật nội dung banner bên dưới.
+  - Cơ chế kiểm soát cuộn trang giải quyết dứt điểm hiện tượng nhớ vị trí cuộn của trình duyệt khi F5.
+- **Nhận xét & Tinh chỉnh của SV:**  
+  Sản phẩm hoàn thiện đạt độ chính xác gần như tuyệt đối so với trang chủ HoYoverse quốc tế, tối ưu hóa toàn diện cả trên desktop và mobile.
+
+---
+
 ## 3. Đánh giá cá nhân về quá trình Vibe Coding
 
 ### AI đã giúp bạn tiết kiệm thời gian ở phần nào nhất?
