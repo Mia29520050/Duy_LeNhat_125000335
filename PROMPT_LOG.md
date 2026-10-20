@@ -123,6 +123,19 @@
 
 ---
 
+### Lần 8: Hoàn thiện Mũi Tên Cuộn Trang, Thanh Trượt Header Sliding Indicator, Bố Cục Mobile Chuẩn HoYoverse & Logo Chính Thức
+- **Prompt đã dùng:**  
+  "Thay vì hiện icon chuột cuộn, hãy hiển thị mũi tên chỉ xuống chuyển động nhịp nhàng (bounce arrow). Ở thanh Header, tạo hiệu ứng thanh trượt màu xanh (#7bb1ff) lướt êm ái dưới các mục menu khi rê chuột vào và tự động quay về tab đang chọn khi rời chuột. Đồng thời, đối chiếu với phiên bản điện thoại của https://www.hoyoverse.com/vi-vn/ để tái hiện 100% layout mobile: Menu Hamburger trượt từ bên phải với nền kính mờ backdrop, bộ icon expand/collapse chuẩn SVG gốc của HoYoverse, cụm thumbnails 5 tựa game căn giữa đáy màn hình, và cập nhật Logo HoYoverse chính thức với biểu tượng Vortex O phát sáng."
+- **Kết quả AI tạo ra:**  
+  - Thay thế icon chuột bằng mũi tên SVG chevron down với hiệu ứng animation lượn sóng mềm mại.
+  - Tích hợp thanh trượt chỉ báo `nav-indicator` chuẩn HoYoverse gồm vạch dài kết hợp chấm phụ cách 4px màu `#7bb1ff`, di chuyển mượt mà theo vị trí và chiều rộng của từng mục menu.
+  - Tích hợp asset logo chính thức `logo_hoyoverse_official.png` trích xuất trực tiếp từ máy chủ CDN HoYoverse.
+  - Hoàn thiện giao diện mobile: Menu Hamburger chuẩn SVG, Drawer trượt êm ái từ phải sang với lớp phủ kính mờ Backdrop, Thumbnails căn giữa đáy banner với thanh thời gian trắng chạy độc lập.
+- **Nhận xét & Tinh chỉnh của SV:**  
+  Trang web đạt độ hoàn mỹ cao nhất từ trước đến nay, tương thích tuyệt đối từ màn hình 360px của điện thoại đến màn hình 4K của desktop.
+
+---
+
 ## 3. Đánh giá cá nhân về quá trình Vibe Coding
 
 ### AI đã giúp bạn tiết kiệm thời gian ở phần nào nhất?

@@ -153,7 +153,7 @@ button {
   left: 0;
   right: 0;
   height: var(--header-height);
-  background: rgba(7, 10, 20, 0.68);
+  background: rgba(7, 10, 20, 0.72);
   backdrop-filter: blur(24px) saturate(160%);
   -webkit-backdrop-filter: blur(24px) saturate(160%);
   border-bottom: 1px solid rgba(255, 255, 255, 0.08);
@@ -174,7 +174,8 @@ button {
 .header__logo {
   display: flex;
   align-items: center;
-  height: 32px;
+  height: 34px;
+  cursor: pointer;
   transition: opacity var(--transition-fast);
 }
 
@@ -182,9 +183,10 @@ button {
   opacity: 0.92;
 }
 
-.header__logo-svg {
-  height: 30px;
+.header__logo-img {
+  height: 32px;
   width: auto;
+  object-fit: contain;
 }
 
 /* Danh sách menu điều hướng */
@@ -194,114 +196,190 @@ button {
 }
 
 .nav-list {
+  position: relative;
   display: flex;
   align-items: center;
   gap: 36px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
 }
 
 .nav-link {
   font-size: 0.9375rem;
   font-weight: 500;
   color: rgba(255, 255, 255, 0.85);
-  padding: 6px 0;
-  position: relative;
+  padding: 8px 0;
+  display: block;
+  text-decoration: none;
   transition: color var(--transition-fast);
+  cursor: pointer;
 }
 
-.nav-link:hover,
-.nav-link:focus-visible {
+.nav-link:hover {
   color: var(--c-white);
 }
 
 /* Mục đang kích hoạt (Active) */
 .nav-link.active {
-  color: #4ea4f6;
+  color: #7bb1ff;
   font-weight: 600;
 }
 
-.nav-link.active::after {
-  content: '';
+/* Thanh trượt chỉ báo HoYoverse Sliding Indicator: gồm vạch chính và chấm phụ cách 4px */
+.nav-indicator {
   position: absolute;
   bottom: -4px;
   left: 0;
-  right: 0;
-  height: 2.5px;
-  background: #4ea4f6;
-  border-radius: var(--radius-full);
+  height: 2px;
+  border-radius: 1px;
+  pointer-events: none;
+  display: flex;
+  overflow: hidden;
+  will-change: transform, width;
+  transition: transform 0.38s cubic-bezier(0.16, 1, 0.3, 1), width 0.32s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.2s ease;
+  z-index: 10;
+  opacity: 0;
 }
 
-/* Nút Hamburger di động */
+.nav-indicator::before,
+.nav-indicator::after {
+  content: "";
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: #7bb1ff;
+}
+
+.nav-indicator::before {
+  flex: 1 1 4px;
+}
+
+.nav-indicator::after {
+  flex: 0 0 auto;
+  width: 6px;
+  margin-left: 4px;
+}
+
+/* Nút Hamburger di động chuẩn SVG HoYoverse */
 .header__burger {
   display: none;
-  flex-direction: column;
-  justify-content: space-between;
-  width: 24px;
-  height: 18px;
+  width: 26px;
+  height: 26px;
   cursor: pointer;
+  position: relative;
   z-index: 1010;
+  align-items: center;
+  justify-content: center;
 }
 
-.burger-bar {
+.burger-svg {
+  width: 22px;
+  height: 22px;
+  transition: opacity 0.25s ease, transform 0.25s ease;
+}
+
+.burger-svg--expand {
   display: block;
-  height: 2px;
-  width: 100%;
-  background: var(--c-white);
-  border-radius: 2px;
-  transition: var(--transition-smooth);
 }
 
-/* Mobile Drawer (Menu trượt di động) */
+.burger-svg--collapse {
+  display: none;
+}
+
+#menu-toggle:checked ~ .header .burger-svg--expand {
+  display: none;
+}
+
+#menu-toggle:checked ~ .header .burger-svg--collapse {
+  display: block;
+}
+
+/* Mobile Drawer Backdrop */
+.mobile-backdrop {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.65);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  z-index: 998;
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity 0.35s ease, visibility 0.35s ease;
+}
+
+#menu-toggle:checked ~ .mobile-backdrop {
+  visibility: visible;
+  opacity: 1;
+}
+
+/* Mobile Drawer (Menu trượt di động chuẩn HoYoverse) */
 .mobile-drawer {
   position: fixed;
-  top: var(--header-height);
-  left: 0;
+  top: 0;
   right: 0;
-  background: rgba(10, 12, 20, 0.96);
-  backdrop-filter: blur(24px);
-  -webkit-backdrop-filter: blur(24px);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-  padding: 24px;
-  display: none;
-  transform: translateY(-100%);
-  opacity: 0;
-  transition: transform var(--transition-smooth), opacity var(--transition-smooth);
+  bottom: 0;
+  width: 78%;
+  max-width: 320px;
+  height: 100%;
+  background: #0e0e0e;
+  border-left: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 72px 24px 32px;
+  z-index: 999;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transform: translateX(100%);
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: -12px 0 32px rgba(0, 0, 0, 0.85);
+  overflow-y: auto;
+}
+
+#menu-toggle:checked ~ .mobile-drawer {
+  transform: translateX(0);
 }
 
 .mobile-nav-list {
   display: flex;
   flex-direction: column;
-  gap: 18px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
 }
 
 .mobile-nav-link {
-  font-size: 1.125rem;
-  font-weight: 600;
-  color: rgba(255, 255, 255, 0.85);
+  font-size: 1.0625rem;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.9);
   display: block;
-  padding: 8px 0;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  padding: 16px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  text-decoration: none;
+  transition: color var(--transition-fast);
 }
 
+.mobile-nav-link:hover,
 .mobile-nav-link.active {
-  color: var(--c-primary);
+  color: #7bb1ff;
 }
 
-/* Kích hoạt Mobile Menu bằng Checkbox Hack */
-#menu-toggle:checked ~ .header .mobile-drawer {
-  transform: translateY(0);
-  opacity: 1;
+.mobile-drawer__footer {
+  padding-top: 24px;
 }
 
-#menu-toggle:checked ~ .header .burger-bar:nth-child(1) {
-  transform: translateY(8px) rotate(45deg);
-}
-
-#menu-toggle:checked ~ .header .burger-bar:nth-child(2) {
-  opacity: 0;
-}
-
-#menu-toggle:checked ~ .header .burger-bar:nth-child(3) {
-  transform: translateY(-8px) rotate(-45deg);
+.mobile-lang-select {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  border-radius: var(--radius-full);
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: var(--c-white);
+  font-size: 0.875rem;
+  font-weight: 600;
 }
 
 /* --------------------------------------------------------------------------
@@ -547,39 +625,38 @@ button {
   }
 }
 
-/* Icon chuột cuộn trang */
+/* Mũi tên cuộn xuống (Scroll Down Arrow) thay thế icon chuột */
 .hero-scroll-indicator {
   position: absolute;
+  bottom: 22px;
   left: 50%;
-  bottom: 24px;
   transform: translateX(-50%);
   display: flex;
+  align-items: center;
   justify-content: center;
-  opacity: 0.7;
+  width: 44px;
+  height: 44px;
+  cursor: pointer;
   z-index: 10;
+  transition: opacity var(--transition-fast);
 }
 
-.scroll-mouse {
-  width: 22px;
-  height: 36px;
-  border: 2px solid rgba(255, 255, 255, 0.5);
-  border-radius: 12px;
-  display: flex;
-  justify-content: center;
-  padding-top: 6px;
+.scroll-arrow-svg {
+  width: 28px;
+  height: 28px;
+  animation: bounceArrow 2s infinite ease-in-out;
+  filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.6));
 }
 
-.scroll-wheel {
-  width: 3px;
-  height: 6px;
-  background: var(--c-white);
-  border-radius: 2px;
-  animation: mouseScroll 1.8s infinite;
-}
-
-@keyframes mouseScroll {
-  0% { transform: translateY(0); opacity: 1; }
-  100% { transform: translateY(12px); opacity: 0; }
+@keyframes bounceArrow {
+  0%, 100% {
+    transform: translateY(0);
+    opacity: 0.65;
+  }
+  50% {
+    transform: translateY(8px);
+    opacity: 1;
+  }
 }
 
 /* --------------------------------------------------------------------------
@@ -1005,41 +1082,22 @@ button {
   opacity: 0.95;
 }
 
+.footer__logo-img {
+  height: 44px;
+  width: auto;
+  margin: 0 auto;
+  display: block;
+  opacity: 0.95;
+}
+
 .footer__copyright {
   font-size: 0.75rem;
   color: #64748b;
   margin-bottom: 28px;
 }
 
-/* Khung định danh sinh viên giữa kỳ */
-.footer__exam-badge {
-  display: inline-block;
-  margin-top: 12px;
-  padding: 10px 24px;
-  border-radius: var(--radius-full);
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  font-size: 0.8125rem;
-  color: #cbd5e1;
-}
-
-.exam-badge-inner {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-}
-
-.exam-badge-dot {
-  width: 8px;
-  height: 8px;
-  background: #10b981;
-  border-radius: var(--radius-full);
-  box-shadow: 0 0 8px #10b981;
-}
-
 /* --------------------------------------------------------------------------
-   9. RESPONSIVE DESIGN (MEDIA QUERIES ĐA THIẾT BỊ)
+   9. RESPONSIVE DESIGN (MEDIA QUERIES ĐA THIẾT BỊ CHUẨN HOYOVERSE MOBILE)
    -------------------------------------------------------------------------- */
 
 /* Tablet ngang & Màn hình vừa (<= 1024px) */
@@ -1064,10 +1122,18 @@ button {
   }
 }
 
-/* Tablet dọc & Điện thoại lớn (<= 768px) */
+/* Tablet dọc & Điện thoại di động (<= 768px) */
 @media (max-width: 768px) {
   :root {
-    --header-height: 60px;
+    --header-height: 56px;
+  }
+
+  .header {
+    height: 56px;
+  }
+
+  .header__logo-img {
+    height: 24px;
   }
 
   .header__nav {
@@ -1078,39 +1144,69 @@ button {
     display: flex;
   }
 
-  .mobile-drawer {
-    display: block;
-  }
-
-  .hero-section {
-    min-height: 75vh;
+  .hero-content {
+    padding-bottom: 96px;
   }
 
   .hero-title {
-    font-size: 1.875rem;
+    font-size: 1.5rem;
     line-height: 1.3;
+    margin-bottom: 20px;
   }
 
+  /* Bố cục thumbnails chuẩn HoYoverse mobile: căn giữa đáy màn hình */
   .hero-carousel-thumbnails {
-    display: none; /* Ẩn thumbnails trên mobile để không che chữ */
+    display: flex;
+    right: 0;
+    left: 0;
+    bottom: 54px;
+    width: 100%;
+    justify-content: center;
+    padding: 0 16px;
+    gap: 8px;
+  }
+
+  .thumb-card {
+    width: 52px;
+    height: 30px;
+    border-radius: 4px;
+  }
+
+  .thumb-progress-track {
+    height: 2px;
+    margin-top: 4px;
+  }
+
+  .hero-scroll-indicator {
+    bottom: 12px;
+  }
+
+  .scroll-arrow-svg {
+    width: 22px;
+    height: 22px;
   }
 
   .products-grid {
     grid-template-columns: 1fr;
+    gap: 20px;
   }
 
   .promo-grid {
     grid-template-columns: 1fr;
-    gap: 20px;
+    gap: 18px;
   }
 
   .promo-card {
-    padding: 36px 28px;
-    min-height: 160px;
+    padding: 36px 24px;
+    min-height: 180px;
   }
 
   .promo-card__title {
-    font-size: 1.75rem;
+    font-size: 1.625rem;
+  }
+
+  .footer__logo-img {
+    height: 30px;
   }
 
   .footer-links {
@@ -1125,7 +1221,7 @@ button {
   }
 
   .hero-title {
-    font-size: 1.5rem;
+    font-size: 1.35rem;
   }
 
   .news-grid {
@@ -1141,10 +1237,5 @@ button {
   .btn-product-more {
     width: 100%;
     text-align: center;
-  }
-
-  .footer__exam-badge {
-    padding: 8px 16px;
-    font-size: 0.75rem;
   }
 }

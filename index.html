@@ -17,22 +17,248 @@
   <!-- Thư viện theo yêu cầu đề thi: AOS (Animate On Scroll) -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
 
-  <!-- Stylesheet chính (Kèm cache buster v5.0) -->
-  <link rel="stylesheet" href="style.css?v=5.0">
+  <!-- Stylesheet chính (Kèm cache buster v6.0) -->
+  <link rel="stylesheet" href="style.css?v=6.0">
 
   <style>
-    /* Header kính mờ (Backdrop Blur chuẩn HoYoverse) */
+    /* Header cố định nền mờ kính (Backdrop Blur chuẩn HoYoverse) */
     .header {
       position: fixed;
       top: 0;
       left: 0;
       right: 0;
       height: 68px;
-      background: rgba(7, 10, 20, 0.68) !important;
+      background: rgba(7, 10, 20, 0.72) !important;
       backdrop-filter: blur(24px) saturate(160%) !important;
       -webkit-backdrop-filter: blur(24px) saturate(160%) !important;
       border-bottom: 1px solid rgba(255, 255, 255, 0.08);
       z-index: 1000;
+      transition: background 0.3s ease;
+    }
+    .header__container {
+      max-width: 1240px;
+      height: 100%;
+      margin: 0 auto;
+      padding: 0 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .header__logo {
+      display: flex;
+      align-items: center;
+      height: 34px;
+      cursor: pointer;
+      transition: opacity 0.2s ease;
+    }
+    .header__logo:hover {
+      opacity: 0.92;
+    }
+    .header__logo-img {
+      height: 32px;
+      width: auto;
+      object-fit: contain;
+    }
+
+    /* Thanh điều hướng & Thanh trượt di chuyển (Sliding Indicator) */
+    .header__nav {
+      display: flex;
+      align-items: center;
+    }
+    .nav-list {
+      position: relative;
+      display: flex;
+      align-items: center;
+      gap: 36px;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+    .nav-link {
+      font-size: 0.9375rem;
+      font-weight: 500;
+      color: rgba(255, 255, 255, 0.85);
+      padding: 8px 0;
+      display: block;
+      text-decoration: none;
+      transition: color 0.2s ease;
+      cursor: pointer;
+    }
+    .nav-link:hover {
+      color: #ffffff;
+    }
+    .nav-link.active {
+      color: #7bb1ff;
+      font-weight: 600;
+    }
+    /* Thanh trượt header indicator: gồm vạch chính và chấm phụ cách 4px theo chuẩn HoYoverse */
+    .nav-indicator {
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      height: 2px;
+      border-radius: 1px;
+      pointer-events: none;
+      display: flex;
+      overflow: hidden;
+      will-change: transform, width;
+      transition: transform 0.38s cubic-bezier(0.16, 1, 0.3, 1), width 0.32s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.2s ease;
+      z-index: 10;
+      opacity: 0;
+    }
+    .nav-indicator::before,
+    .nav-indicator::after {
+      content: "";
+      display: block;
+      height: 100%;
+      border-radius: inherit;
+      background: #7bb1ff;
+    }
+    .nav-indicator::before {
+      flex: 1 1 4px;
+    }
+    .nav-indicator::after {
+      flex: 0 0 auto;
+      width: 6px;
+      margin-left: 4px;
+    }
+
+    /* Nút Hamburger & Close SVG chuẩn HoYoverse */
+    .header__burger {
+      display: none;
+      width: 26px;
+      height: 26px;
+      cursor: pointer;
+      position: relative;
+      z-index: 1010;
+      align-items: center;
+      justify-content: center;
+    }
+    .burger-svg {
+      width: 22px;
+      height: 22px;
+      transition: opacity 0.25s ease, transform 0.25s ease;
+    }
+    .burger-svg--expand {
+      display: block;
+    }
+    .burger-svg--collapse {
+      display: none;
+    }
+    #menu-toggle:checked ~ .header .burger-svg--expand {
+      display: none;
+    }
+    #menu-toggle:checked ~ .header .burger-svg--collapse {
+      display: block;
+    }
+
+    /* Mobile Backdrop & Drawer chuẩn HoYoverse */
+    .mobile-backdrop {
+      position: fixed;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.65);
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+      z-index: 998;
+      visibility: hidden;
+      opacity: 0;
+      transition: opacity 0.35s ease, visibility 0.35s ease;
+    }
+    #menu-toggle:checked ~ .mobile-backdrop {
+      visibility: visible;
+      opacity: 1;
+    }
+    .mobile-drawer {
+      position: fixed;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      width: 78%;
+      max-width: 320px;
+      height: 100%;
+      background: #0e0e0e;
+      border-left: 1px solid rgba(255, 255, 255, 0.08);
+      padding: 72px 24px 32px;
+      z-index: 999;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transform: translateX(100%);
+      transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      box-shadow: -12px 0 32px rgba(0, 0, 0, 0.85);
+      overflow-y: auto;
+    }
+    #menu-toggle:checked ~ .mobile-drawer {
+      transform: translateX(0);
+    }
+    .mobile-nav-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+    }
+    .mobile-nav-link {
+      font-size: 1.0625rem;
+      font-weight: 700;
+      color: rgba(255, 255, 255, 0.9);
+      display: block;
+      padding: 16px 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      text-decoration: none;
+      transition: color 0.2s ease;
+    }
+    .mobile-nav-link:hover,
+    .mobile-nav-link.active {
+      color: #7bb1ff;
+    }
+    .mobile-drawer__footer {
+      padding-top: 24px;
+    }
+    .mobile-lang-select {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 16px;
+      border-radius: 9999px;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      color: #ffffff;
+      font-size: 0.875rem;
+      font-weight: 600;
+    }
+
+    /* Mũi tên cuộn xuống (Scroll Down Arrow) thay thế icon chuột */
+    .hero-scroll-indicator {
+      position: absolute;
+      bottom: 22px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 10;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+    }
+    .scroll-arrow-svg {
+      width: 28px;
+      height: 28px;
+      animation: bounceArrow 2s infinite ease-in-out;
+      filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.6));
+    }
+    @keyframes bounceArrow {
+      0%, 100% {
+        transform: translateY(0);
+        opacity: 0.65;
+      }
+      50% {
+        transform: translateY(8px);
+        opacity: 1;
+      }
     }
 
     /* CSS nhúng chống lỗi cache trình duyệt cho Hero Full Viewport & Slider */
@@ -127,6 +353,94 @@
       transform: scale(1.08);
       box-shadow: 0 6px 20px rgba(37, 99, 235, 0.45);
     }
+
+    /* Footer Logo Image */
+    .footer__logo-img {
+      height: 44px;
+      width: auto;
+      margin: 0 auto;
+      display: block;
+      opacity: 0.95;
+    }
+
+    /* Bố cục Responsive di động chuẩn HoYoverse */
+    @media (max-width: 768px) {
+      .header {
+        height: 56px !important;
+      }
+      .header__logo-img {
+        height: 24px !important;
+      }
+      .header__nav {
+        display: none !important;
+      }
+      .header__burger {
+        display: flex !important;
+      }
+      .hero-content {
+        padding-bottom: 96px !important;
+      }
+      .hero-title {
+        font-size: 1.5rem !important;
+        line-height: 1.3 !important;
+        margin-bottom: 20px !important;
+      }
+      .hero-carousel-thumbnails {
+        right: 0 !important;
+        left: 0 !important;
+        bottom: 54px !important;
+        width: 100% !important;
+        justify-content: center !important;
+        padding: 0 16px !important;
+        gap: 8px !important;
+      }
+      .thumb-card {
+        width: 52px !important;
+        height: 30px !important;
+        border-radius: 4px !important;
+      }
+      .thumb-progress-track {
+        height: 2px !important;
+        margin-top: 4px !important;
+      }
+      .hero-scroll-indicator {
+        bottom: 12px !important;
+      }
+      .scroll-arrow-svg {
+        width: 22px !important;
+        height: 22px !important;
+      }
+      .news-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 12px !important;
+      }
+      .products-grid {
+        grid-template-columns: 1fr !important;
+        gap: 20px !important;
+      }
+      .promo-grid {
+        grid-template-columns: 1fr !important;
+        gap: 18px !important;
+      }
+      .promo-card {
+        padding: 36px 24px !important;
+        min-height: 180px !important;
+      }
+      .promo-card__title {
+        font-size: 1.625rem !important;
+      }
+      .footer__logo-img {
+        height: 30px !important;
+      }
+    }
+    @media (max-width: 480px) {
+      .news-grid {
+        grid-template-columns: 1fr !important;
+      }
+      .hero-title {
+        font-size: 1.35rem !important;
+      }
+    }
   </style>
 </head>
 <body>
@@ -140,74 +454,59 @@
   <header class="header">
     <div class="header__container">
       
-      <!-- Logo HoYoverse chuẩn vector với biểu tượng Vortex O phát sáng -->
+      <!-- Logo HoYoverse chuẩn chính thức từ CDN HoYoverse -->
       <a href="./" class="header__logo" id="headerLogo" aria-label="HoYoverse Trang Chủ">
-        <svg class="header__logo-svg" viewBox="0 0 280 38" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Logo HoYoverse">
-          <defs>
-            <linearGradient id="hdrVortex" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stop-color="#38bdf8"/>
-              <stop offset="50%" stop-color="#818cf8"/>
-              <stop offset="100%" stop-color="#c084fc"/>
-            </linearGradient>
-            <filter id="vortexGlow" x="-30%" y="-30%" width="160%" height="160%">
-              <feGaussianBlur stdDeviation="1.5" result="blur"/>
-              <feMerge>
-                <feMergeNode in="blur"/>
-                <feMergeNode in="SourceGraphic"/>
-              </feMerge>
-            </filter>
-          </defs>
-          <!-- Chữ H -->
-          <path d="M4 8 H10 V16 H22 V8 H28 V30 H22 V22 H10 V30 H4 Z" fill="#ffffff"/>
-          <!-- Biểu tượng Vortex O phát sáng đa sắc -->
-          <g filter="url(#vortexGlow)" transform="translate(46, 19)">
-            <circle cx="0" cy="0" r="10.5" stroke="url(#hdrVortex)" stroke-width="2.5" fill="none"/>
-            <circle cx="0" cy="0" r="6.5" stroke="#38bdf8" stroke-width="1.5" stroke-dasharray="8 4" fill="none"/>
-            <circle cx="0" cy="0" r="2.5" fill="#ffffff"/>
-          </g>
-          <!-- Chữ YOVERSE -->
-          <text x="66" y="26" font-family="'Plus Jakarta Sans', sans-serif" font-size="20" font-weight="800" fill="#ffffff" letter-spacing="4">YOVERSE</text>
-        </svg>
+        <img src="assets/images/logo_hoyoverse_official.png" alt="HoYoverse Logo" class="header__logo-img">
       </a>
 
-      <!-- Menu Điều hướng chính -->
+      <!-- Menu Điều hướng chính với Thanh trượt di chuyển (Sliding Indicator) -->
       <nav class="header__nav" aria-label="Điều hướng chính">
         <ul class="nav-list" role="list">
           <li class="nav-item">
-            <a href="#hero" class="nav-link active">Trang Chủ</a>
+            <a href="./" class="nav-link active" data-index="0">Trang Chủ</a>
           </li>
           <li class="nav-item">
-            <a href="#news" class="nav-link">Tin Tức</a>
+            <a href="#news" class="nav-link" data-index="1">Tin Tức</a>
           </li>
           <li class="nav-item">
-            <a href="#products" class="nav-link">Sản Phẩm</a>
+            <a href="#about" class="nav-link" data-index="2">Về Chúng Tôi</a>
           </li>
           <li class="nav-item">
-            <a href="#about" class="nav-link">Về Chúng Tôi</a>
+            <a href="#careers" class="nav-link" data-index="3">Tuyển Dụng</a>
           </li>
           <li class="nav-item">
-            <a href="#careers" class="nav-link">Tuyển Dụng</a>
+            <a href="https://cs.hoyoverse.com/static/hoyoverse-new-csc-service-hall-fe/index.html?page_id=19&login_type=visitor&game_biz=platform_hyvpass&lang=vi-vn&utm_source=HoYoverse&utm_medium=navigation#/home" target="_blank" rel="noopener noreferrer" class="nav-link" data-index="4">Trung Tâm Trợ Giúp</a>
           </li>
-          <li class="nav-item">
-            <a href="https://cs.hoyoverse.com/static/hoyoverse-new-csc-service-hall-fe/index.html?page_id=19&login_type=visitor&game_biz=platform_hyvpass&lang=vi-vn&utm_source=HoYoverse&utm_medium=navigation#/home" target="_blank" rel="noopener noreferrer" class="nav-link">Trung Tâm Trợ Giúp</a>
-          </li>
+          <!-- Thanh trượt di chuyển (Sliding Indicator) chuẩn HoYoverse -->
+          <li class="nav-indicator" aria-hidden="true"></li>
         </ul>
       </nav>
 
-      <!-- Nút Hamburger trên điện thoại -->
-      <label for="menu-toggle" class="header__burger" aria-label="Đóng/Mở menu di động">
-        <span class="burger-bar"></span>
-        <span class="burger-bar"></span>
-        <span class="burger-bar"></span>
+      <!-- Nút Hamburger trên điện thoại chuẩn SVG HoYoverse -->
+      <label for="menu-toggle" class="header__burger" id="burgerBtn" aria-label="Đóng/Mở menu di động">
+        <!-- Icon mở (3 vạch bo góc, vạch dưới ngắn hơn chuẩn HoYoverse) -->
+        <svg class="burger-svg burger-svg--expand" viewBox="0 0 47 39" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M2.75 5.75C1.23 5.75 0 4.46 0 2.88C0 1.29 1.23 0 2.75 0H43.29C44.8 0 46.04 1.29 46.04 2.88C46.04 4.46 44.8 5.75 43.29 5.75H2.75Z" fill="#ffffff"/>
+          <path d="M2.75 22.38C1.23 22.38 0 21.09 0 19.5C0 17.91 1.23 16.62 2.75 16.62H43.29C44.8 16.62 46.04 17.91 46.04 19.5C46.04 21.09 44.8 22.38 43.29 22.38H2.75Z" fill="#ffffff"/>
+          <path d="M2.75 39C1.23 39 0 37.71 0 36.12C0 34.54 1.23 33.25 2.75 33.25H27.74C29.26 33.25 30.5 34.54 30.5 36.12C30.5 37.71 29.26 39 27.74 39H2.75Z" fill="#ffffff"/>
+        </svg>
+        <!-- Icon đóng (Dấu X bo góc tinh tế chuẩn HoYoverse) -->
+        <svg class="burger-svg burger-svg--collapse" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M27.88 30C27.31 30 26.78 29.78 26.38 29.38L0.62 3.62C-0.21 2.8 -0.21 1.45 0.62 0.62C1.45 -0.21 2.8 -0.21 3.62 0.62L29.38 26.38C30.21 27.2 30.21 28.55 29.38 29.38C28.98 29.78 28.45 30 27.88 30Z" fill="#ffffff"/>
+          <path d="M2.12 30C1.56 30 1.02 29.78 0.62 29.38C-0.21 28.55 -0.21 27.2 0.62 26.38L26.38 0.62C27.2 -0.21 28.55 -0.21 29.38 0.62C30.21 1.45 30.21 2.8 29.38 3.62L3.62 29.38C3.22 29.78 2.69 30 2.12 30Z" fill="#ffffff"/>
+        </svg>
       </label>
 
     </div>
 
-    <!-- Mobile Drawer Navigation -->
-    <div class="mobile-drawer" aria-hidden="true">
+    <!-- Backdrop che mờ nền khi mở menu di động -->
+    <div class="mobile-backdrop" id="mobileBackdrop" aria-hidden="true"></div>
+
+    <!-- Mobile Drawer Navigation (Bố cục chuẩn HoYoverse Mobile) -->
+    <aside class="mobile-drawer" id="mobileDrawer" aria-label="Menu di động">
       <nav class="mobile-nav" aria-label="Menu di động">
         <ul class="mobile-nav-list" role="list">
-          <li><a href="#hero" class="mobile-nav-link active">Trang Chủ</a></li>
+          <li><a href="./" class="mobile-nav-link active">Trang Chủ</a></li>
           <li><a href="#news" class="mobile-nav-link">Tin Tức</a></li>
           <li><a href="#products" class="mobile-nav-link">Sản Phẩm</a></li>
           <li><a href="#about" class="mobile-nav-link">Về Chúng Tôi</a></li>
@@ -215,7 +514,13 @@
           <li><a href="https://cs.hoyoverse.com/static/hoyoverse-new-csc-service-hall-fe/index.html?page_id=19&login_type=visitor&game_biz=platform_hyvpass&lang=vi-vn&utm_source=HoYoverse&utm_medium=navigation#/home" target="_blank" rel="noopener noreferrer" class="mobile-nav-link">Trung Tâm Trợ Giúp</a></li>
         </ul>
       </nav>
-    </div>
+      <div class="mobile-drawer__footer">
+        <div class="mobile-lang-select">
+          <span class="mobile-lang-icon" aria-hidden="true">🌐</span>
+          <span class="mobile-lang-text">Tiếng Việt</span>
+        </div>
+      </div>
+    </aside>
   </header>
 
   <!-- =========================================================================
@@ -388,11 +693,11 @@
 
       </aside>
 
-      <!-- Scroll Indicator chuột cuộn xuống -->
-      <div class="hero-scroll-indicator" aria-hidden="true">
-        <span class="scroll-mouse">
-          <span class="scroll-wheel"></span>
-        </span>
+      <!-- Scroll Indicator mũi tên cuộn xuống chuẩn HoYoverse -->
+      <div class="hero-scroll-indicator" id="heroScrollDown" aria-label="Cuộn xuống để xem tiếp" role="button" tabindex="0">
+        <svg class="scroll-arrow-svg" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M6 9L12 15L18 9" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
       </div>
 
     </section>
@@ -787,9 +1092,7 @@
 
       <!-- Logo HoYoverse Chân Trang Lớn -->
       <div class="footer__logo-wrap">
-        <svg class="footer__logo-svg" viewBox="0 0 1163 204" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Logo HoYoverse Chân Trang">
-          <text x="50%" y="150" text-anchor="middle" font-family="'Plus Jakarta Sans', sans-serif" font-size="160" font-weight="800" fill="#ffffff" letter-spacing="14">HOY<tspan fill="#3b82f6">O</tspan>VERSE</text>
-        </svg>
+        <img src="assets/images/logo_hoyoverse_official.png" alt="HoYoverse Logo Chân Trang" class="footer__logo-img">
       </div>
 
       <!-- Thông tin bản quyền chính thức -->
@@ -892,6 +1195,94 @@
       // Bắt đầu chạy ngay khi load trang
       goToSlide(0);
       startAutoPlay();
+    })();
+
+    /* =======================================================================
+       BỘ ĐIỀU KHIỂN THANH TRƯỢT HEADER (SLIDING INDICATOR):
+       - Thanh trượt xanh #7bb1ff lướt mượt mà dưới link đang hover
+       - Tự động quay về link active khi rê chuột ra ngoài
+       ======================================================================= */
+    (function initNavIndicator() {
+      var navList = document.querySelector('.nav-list');
+      var indicator = document.querySelector('.nav-indicator');
+      var navLinks = document.querySelectorAll('.header__nav .nav-link');
+      if (!navList || !indicator || !navLinks.length) return;
+
+      var activeLink = document.querySelector('.header__nav .nav-link.active') || navLinks[0];
+      var timeoutId = null;
+
+      function moveIndicatorTo(link) {
+        if (!link) return;
+        var listRect = navList.getBoundingClientRect();
+        var linkRect = link.getBoundingClientRect();
+        var x = linkRect.left - listRect.left;
+        var w = linkRect.width;
+
+        indicator.style.transform = 'translateX(' + x + 'px)';
+        indicator.style.width = w + 'px';
+        indicator.style.opacity = '1';
+      }
+
+      setTimeout(function() {
+        moveIndicatorTo(activeLink);
+      }, 150);
+
+      window.addEventListener('resize', function() {
+        moveIndicatorTo(activeLink);
+      });
+
+      navLinks.forEach(function(link) {
+        link.addEventListener('mouseenter', function() {
+          if (timeoutId) {
+            clearTimeout(timeoutId);
+            timeoutId = null;
+          }
+          moveIndicatorTo(this);
+        });
+
+        link.addEventListener('click', function() {
+          navLinks.forEach(function(l) { l.classList.remove('active'); });
+          this.classList.add('active');
+          activeLink = this;
+          moveIndicatorTo(this);
+        });
+      });
+
+      navList.addEventListener('mouseleave', function() {
+        timeoutId = setTimeout(function() {
+          moveIndicatorTo(activeLink);
+        }, 250);
+      });
+    })();
+
+    /* =======================================================================
+       ĐIỀU KHIỂN MENU DI ĐỘNG & CUỘN MŨI TÊN:
+       ======================================================================= */
+    (function initMobileMenuAndArrow() {
+      var menuToggle = document.getElementById('menu-toggle');
+      var mobileBackdrop = document.getElementById('mobileBackdrop');
+
+      if (mobileBackdrop && menuToggle) {
+        mobileBackdrop.addEventListener('click', function() {
+          menuToggle.checked = false;
+        });
+      }
+
+      document.querySelectorAll('.mobile-nav-link').forEach(function(link) {
+        link.addEventListener('click', function() {
+          if (menuToggle) menuToggle.checked = false;
+        });
+      });
+
+      var heroScrollDown = document.getElementById('heroScrollDown');
+      if (heroScrollDown) {
+        heroScrollDown.addEventListener('click', function() {
+          var news = document.getElementById('news');
+          if (news) {
+            news.scrollIntoView({ behavior: 'smooth' });
+          }
+        });
+      }
     })();
 
     /* =======================================================================
