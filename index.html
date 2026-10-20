@@ -17,28 +17,30 @@
   <!-- Thư viện theo yêu cầu đề thi: AOS (Animate On Scroll) -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
 
-  <!-- Stylesheet chính (Kèm cache buster chống lưu đệm trình duyệt) -->
-  <link rel="stylesheet" href="style.css?v=3.5">
+  <!-- Stylesheet chính (Kèm cache buster v4.0) -->
+  <link rel="stylesheet" href="style.css?v=4.0">
 
   <style>
-    /* CSS nhúng chống lỗi cache trình duyệt cho Hero Slider */
+    /* CSS nhúng chống lỗi cache trình duyệt cho Hero Full Viewport & Slider */
     .hero-slider {
       position: relative;
       width: 100%;
-      min-height: 88vh;
+      height: 100vh;
+      min-height: 100vh;
       background-color: #070a14;
       overflow: hidden;
-      padding-top: 68px;
     }
     .hero-slide {
       position: absolute;
       inset: 0;
+      width: 100%;
+      height: 100%;
       display: flex;
       align-items: center;
       opacity: 0;
       visibility: hidden;
       pointer-events: none;
-      transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+      transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
       transform: scale(1.02);
       z-index: 1;
     }
@@ -48,6 +50,10 @@
       pointer-events: auto;
       transform: scale(1);
       z-index: 2;
+    }
+    @keyframes runTimeProgress {
+      0% { width: 0%; }
+      100% { width: 100%; }
     }
   </style>
 </head>
@@ -123,11 +129,11 @@
   <main class="main-content">
 
     <!-- =======================================================================
-         2. HERO SECTION: Slider 5 Banner chuyển đổi theo thời gian & khi click
+         2. HERO SECTION: FULL TRANG WEB (100vh) VỚI THANH THỜI GIAN TRẮNG CHẠY
          ======================================================================= -->
     <section id="hero" class="hero-slider" aria-label="Khu vực nổi bật">
 
-      <!-- SLIDE 1: Honkai: Nexus Anima (Active mặc định) -->
+      <!-- SLIDE 1: Honkai: Nexus Anima -->
       <div class="hero-slide active" data-slide="0" aria-label="Slide 1: Honkai Nexus Anima">
         <div class="hero-bg-wrapper">
           <img src="assets/images/hero_banner.jpg" alt="HoYoverse Honkai Nexus Anima" class="hero-bg-img">
@@ -237,28 +243,54 @@
         </div>
       </div>
 
-      <!-- Carousel Thumbnails Bar: Click để chuyển đổi tức thì -->
+      <!-- Carousel Thumbnails: 5 Card kèm Thanh Trắng Thời Gian chạy từ Trái sang Phải -->
       <aside class="hero-carousel-thumbnails" aria-label="Danh sách chọn tựa game nổi bật">
-        <button type="button" class="thumb-item active" data-thumb="0" aria-label="Xem Honkai: Nexus Anima">
-          <img src="assets/images/hero_banner.jpg" alt="Thumb Honkai: Nexus Anima">
-          <span class="thumb-indicator" aria-hidden="true"></span>
-        </button>
-        <button type="button" class="thumb-item" data-thumb="1" aria-label="Xem Zenless Zone Zero">
-          <img src="assets/images/thumb_zzz.jpg" alt="Thumb Zenless Zone Zero">
-          <span class="thumb-indicator" aria-hidden="true"></span>
-        </button>
-        <button type="button" class="thumb-item" data-thumb="2" aria-label="Xem Honkai: Star Rail">
-          <img src="assets/images/thumb_hsr.jpg" alt="Thumb Honkai: Star Rail">
-          <span class="thumb-indicator" aria-hidden="true"></span>
-        </button>
-        <button type="button" class="thumb-item" data-thumb="3" aria-label="Xem Genshin Impact">
-          <img src="assets/images/thumb_genshin.jpg" alt="Thumb Genshin Impact">
-          <span class="thumb-indicator" aria-hidden="true"></span>
-        </button>
-        <button type="button" class="thumb-item" data-thumb="4" aria-label="Xem Honkai Impact 3rd">
-          <img src="assets/images/thumb_hi3.jpg" alt="Thumb Honkai Impact 3rd">
-          <span class="thumb-indicator" aria-hidden="true"></span>
-        </button>
+        
+        <div class="thumb-wrapper active" data-thumb="0" role="button" tabindex="0" aria-label="Xem Honkai: Nexus Anima">
+          <div class="thumb-card">
+            <img src="assets/images/hero_banner.jpg" alt="Thumb Honkai: Nexus Anima">
+          </div>
+          <div class="thumb-progress-track">
+            <div class="thumb-progress-fill"></div>
+          </div>
+        </div>
+
+        <div class="thumb-wrapper" data-thumb="1" role="button" tabindex="0" aria-label="Xem Zenless Zone Zero">
+          <div class="thumb-card">
+            <img src="assets/images/thumb_zzz.jpg" alt="Thumb Zenless Zone Zero">
+          </div>
+          <div class="thumb-progress-track">
+            <div class="thumb-progress-fill"></div>
+          </div>
+        </div>
+
+        <div class="thumb-wrapper" data-thumb="2" role="button" tabindex="0" aria-label="Xem Honkai: Star Rail">
+          <div class="thumb-card">
+            <img src="assets/images/thumb_hsr.jpg" alt="Thumb Honkai: Star Rail">
+          </div>
+          <div class="thumb-progress-track">
+            <div class="thumb-progress-fill"></div>
+          </div>
+        </div>
+
+        <div class="thumb-wrapper" data-thumb="3" role="button" tabindex="0" aria-label="Xem Genshin Impact">
+          <div class="thumb-card">
+            <img src="assets/images/thumb_genshin.jpg" alt="Thumb Genshin Impact">
+          </div>
+          <div class="thumb-progress-track">
+            <div class="thumb-progress-fill"></div>
+          </div>
+        </div>
+
+        <div class="thumb-wrapper" data-thumb="4" role="button" tabindex="0" aria-label="Xem Honkai Impact 3rd">
+          <div class="thumb-card">
+            <img src="assets/images/thumb_hi3.jpg" alt="Thumb Honkai Impact 3rd">
+          </div>
+          <div class="thumb-progress-track">
+            <div class="thumb-progress-fill"></div>
+          </div>
+        </div>
+
       </aside>
 
       <!-- Scroll Indicator chuột cuộn xuống -->
@@ -635,14 +667,14 @@
 
     /* =======================================================================
        BỘ ĐIỀU KHIỂN HERO SLIDER HOYOVERSE:
-       - 1 Slide hiển thị duy nhất tại một thời điểm
-       - Tự động chuyển slide sau mỗi 4.5 giây (Autoplay)
+       - Banner Full 100vh
+       - Tự động chuyển đổi sau 4.5 giây
+       - Thanh thời gian màu trắng chạy mượt mà từ trái sang phải
        - Chuyển tức thì khi click vào bất kỳ Thumbnail nào
-       - Reset chu kỳ khi người dùng click thủ công
        ======================================================================= */
     (function initHeroSlider() {
       var slides = document.querySelectorAll('.hero-slide');
-      var thumbs = document.querySelectorAll('.hero-carousel-thumbnails .thumb-item');
+      var thumbs = document.querySelectorAll('.hero-carousel-thumbnails .thumb-wrapper');
       if (!slides.length || !thumbs.length) return;
 
       var currentIndex = 0;
@@ -651,15 +683,27 @@
 
       function goToSlide(index) {
         if (index < 0 || index >= totalSlides) return;
-        
+
         // Cập nhật slide
         for (var i = 0; i < totalSlides; i++) {
           if (i === index) {
             slides[i].classList.add('active');
             thumbs[i].classList.add('active');
+            
+            // Khởi động lại animation thanh tiến trình trắng chạy từ 0 đến 100%
+            var fill = thumbs[i].querySelector('.thumb-progress-fill');
+            if (fill) {
+              fill.style.animation = 'none';
+              fill.offsetHeight; /* Kích hoạt reflow */
+              fill.style.animation = 'runTimeProgress 4.5s linear forwards';
+            }
           } else {
             slides[i].classList.remove('active');
             thumbs[i].classList.remove('active');
+            var inactiveFill = thumbs[i].querySelector('.thumb-progress-fill');
+            if (inactiveFill) {
+              inactiveFill.style.animation = 'none';
+            }
           }
         }
         currentIndex = index;
@@ -682,16 +726,26 @@
         }
       }
 
-      // Lắng nghe sự kiện click trên từng Thumbnail
+      // Lắng nghe click trên từng Thumbnail
       thumbs.forEach(function(thumb, idx) {
         thumb.addEventListener('click', function(e) {
           e.preventDefault();
           goToSlide(idx);
-          startAutoPlay(); // Reset lại nhịp đếm 4.5s sau khi click
+          startAutoPlay(); // Reset lại nhịp đếm 4.5s
+        });
+
+        // Hỗ trợ phím Enter / Space đạt chuẩn tiếp cận
+        thumb.addEventListener('keydown', function(e) {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            goToSlide(idx);
+            startAutoPlay();
+          }
         });
       });
 
-      // Tự động chạy khi tải trang
+      // Bắt đầu chạy ngay khi load trang
+      goToSlide(0);
       startAutoPlay();
     })();
   </script>
