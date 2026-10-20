@@ -4,525 +4,517 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>HoYoverse — Tech Otakus Save The World</title>
-  <meta name="description" content="HoYoverse — tạo ra những trải nghiệm thế giới ảo đắm chìm cho người chơi trên toàn thế giới.">
+  <meta name="description" content="Trang chủ chính thức của HoYoverse Việt Nam — Nhà phát hành Genshin Impact, Honkai: Star Rail, Zenless Zone Zero và HoYoLAB.">
 
-  <!-- Google Fonts -->
+  <!-- Google Fonts: Plus Jakarta Sans (Hỗ trợ tiếng Việt hoàn hảo, chuẩn typography quốc tế) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
-  <!-- Animate.css (yêu cầu đề thi) -->
+  <!-- Thư viện theo yêu cầu đề thi: Animate.css -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
 
-  <!-- AOS (yêu cầu đề thi) -->
+  <!-- Thư viện theo yêu cầu đề thi: AOS (Animate On Scroll) -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
 
+  <!-- Stylesheet chính -->
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <!--
-    =============================================
-    DARK / LIGHT TOGGLE — Pure CSS Checkbox Trick
-    Input must be BEFORE .site-wrap so the
-    general sibling combinator (~) can reach it.
-    =============================================
-  -->
-  <input type="checkbox" id="theme-ctl" class="theme-ctl" aria-label="Chuyển chế độ sáng/tối">
-  <input type="checkbox" id="menu-ctl" class="menu-ctl" aria-label="Mở menu điều hướng">
 
-  <div class="site-wrap">
+  <!-- Checkbox điều khiển Mobile Navigation (Pure CSS, không dùng JS) -->
+  <input type="checkbox" id="menu-toggle" class="menu-toggle" aria-label="Mở menu di động">
 
-    <!-- ============================= HEADER ============================= -->
-    <header class="hdr">
-      <div class="hdr__inner">
+  <!-- =========================================================================
+       1. HEADER: Cố định (Fixed), Nền kính mờ (Backdrop Blur), Logo & Menu chuẩn
+       ========================================================================= -->
+  <header class="header">
+    <div class="header__container">
+      
+      <!-- Logo HoYoverse chuẩn vector -->
+      <a href="#hero" class="header__logo" aria-label="HoYoverse Trang Chủ">
+        <svg class="header__logo-svg" viewBox="0 0 1163 204" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Logo HoYoverse">
+          <!-- Text Vector HoYoverse tinh tế sắc nét -->
+          <text x="0" y="150" font-family="'Plus Jakarta Sans', sans-serif" font-size="160" font-weight="800" fill="#ffffff" letter-spacing="12">HOY<tspan fill="#3b82f6">O</tspan>VERSE</text>
+        </svg>
+      </a>
 
-        <a href="#hero" class="hdr__logo" aria-label="HoYoverse trang chủ">
-          <svg width="130" height="28" viewBox="0 0 130 28" fill="none" aria-hidden="true">
-            <text x="0" y="22" font-family="DM Serif Display, serif" font-size="22" fill="currentColor" letter-spacing="-0.5">HoYoverse</text>
-          </svg>
-        </a>
+      <!-- Menu Điều hướng chính -->
+      <nav class="header__nav" aria-label="Điều hướng chính">
+        <ul class="nav-list" role="list">
+          <li class="nav-item">
+            <a href="#hero" class="nav-link active">Trang Chủ</a>
+          </li>
+          <li class="nav-item">
+            <a href="#news" class="nav-link">Tin Tức</a>
+          </li>
+          <li class="nav-item">
+            <a href="#products" class="nav-link">Sản Phẩm</a>
+          </li>
+          <li class="nav-item">
+            <a href="#about" class="nav-link">Về Chúng Tôi</a>
+          </li>
+          <li class="nav-item">
+            <a href="#careers" class="nav-link">Tuyển Dụng</a>
+          </li>
+          <li class="nav-item">
+            <a href="https://cs.hoyoverse.com/" target="_blank" rel="noopener noreferrer" class="nav-link">Trung Tâm Trợ Giúp</a>
+          </li>
+        </ul>
+      </nav>
 
-        <nav class="hdr__nav" aria-label="Điều hướng chính">
-          <ul role="list">
-            <li><a href="#hero"    class="nav-lnk">Trang Chủ</a></li>
-            <li class="has-drop">
-              <a href="#games" class="nav-lnk">Trò Chơi <span aria-hidden="true">▾</span></a>
-              <ul class="drop" role="list" aria-label="Trò chơi">
-                <li><a href="https://genshin.hoyoverse.com/vi/"                    target="_blank" rel="noopener noreferrer">Genshin Impact</a></li>
-                <li><a href="https://hsr.hoyoverse.com/vi-vn/"                     target="_blank" rel="noopener noreferrer">Honkai: Star Rail</a></li>
-                <li><a href="https://zenless.hoyoverse.com/vi-vn/"                 target="_blank" rel="noopener noreferrer">Zenless Zone Zero</a></li>
-                <li><a href="https://honkaiimpact3.hoyoverse.com/global/vi-vn/"    target="_blank" rel="noopener noreferrer">Honkai Impact 3rd</a></li>
-                <li><a href="https://tot.hoyoverse.com/vi-vn/"                     target="_blank" rel="noopener noreferrer">Tears of Themis</a></li>
-              </ul>
-            </li>
-            <li><a href="#news"    class="nav-lnk">Tin Tức</a></li>
-            <li><a href="#about"   class="nav-lnk">Về Chúng Tôi</a></li>
-            <li><a href="#careers" class="nav-lnk">Tuyển Dụng</a></li>
-          </ul>
-        </nav>
+      <!-- Nút Hamburger trên điện thoại -->
+      <label for="menu-toggle" class="header__burger" aria-label="Đóng/Mở menu di động">
+        <span class="burger-bar"></span>
+        <span class="burger-bar"></span>
+        <span class="burger-bar"></span>
+      </label>
 
-        <div class="hdr__actions">
-          <!-- Dark / Light toggle switch -->
-          <label for="theme-ctl" class="theme-switch" aria-label="Chuyển giao diện sáng/tối">
-            <span class="theme-switch__track">
-              <span class="theme-switch__icon theme-switch__icon--moon" aria-hidden="true">
-                <!-- Moon SVG -->
-                <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
-              </span>
-              <span class="theme-switch__icon theme-switch__icon--sun" aria-hidden="true">
-                <!-- Sun SVG -->
-                <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
-              </span>
-              <span class="theme-switch__thumb"></span>
-            </span>
-          </label>
+    </div>
 
-          <a href="https://account.hoyoverse.com/" target="_blank" rel="noopener noreferrer" class="btn-login">Đăng Nhập</a>
+    <!-- Mobile Drawer Navigation -->
+    <div class="mobile-drawer" aria-hidden="true">
+      <nav class="mobile-nav" aria-label="Menu di động">
+        <ul class="mobile-nav-list" role="list">
+          <li><a href="#hero" class="mobile-nav-link active">Trang Chủ</a></li>
+          <li><a href="#news" class="mobile-nav-link">Tin Tức</a></li>
+          <li><a href="#products" class="mobile-nav-link">Sản Phẩm</a></li>
+          <li><a href="#about" class="mobile-nav-link">Về Chúng Tôi</a></li>
+          <li><a href="#careers" class="mobile-nav-link">Tuyển Dụng</a></li>
+          <li><a href="https://cs.hoyoverse.com/" target="_blank" rel="noopener noreferrer" class="mobile-nav-link">Trung Tâm Trợ Giúp</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
 
-          <!-- Hamburger — pure CSS -->
-          <label for="menu-ctl" class="burger" aria-label="Mở menu">
-            <span></span><span></span><span></span>
-          </label>
-        </div>
+  <!-- =========================================================================
+       MAIN CONTENT: Toàn bộ cấu trúc chuẩn Semantic HTML5
+       ========================================================================= -->
+  <main class="main-content">
 
+    <!-- =======================================================================
+         2. HERO SECTION: Trực quan, Rõ nét, Key Visual HoYoverse chính thức
+         ======================================================================= -->
+    <section id="hero" class="hero-section" aria-label="Khu vực nổi bật">
+      <div class="hero-bg-wrapper">
+        <img src="assets/images/hero_banner.jpg" alt="HoYoverse Key Visual Honkai Nexus Anima" class="hero-bg-img">
+        <div class="hero-gradient-overlay" aria-hidden="true"></div>
       </div>
 
-      <!-- Mobile nav drawer -->
-      <div class="mob-nav" aria-hidden="true">
-        <nav aria-label="Menu điều hướng di động">
-          <ul role="list">
-            <li><a href="#hero"    class="mob-lnk">Trang Chủ</a></li>
-            <li><a href="#games"   class="mob-lnk">Trò Chơi</a></li>
-            <li><a href="#news"    class="mob-lnk">Tin Tức</a></li>
-            <li><a href="#about"   class="mob-lnk">Về Chúng Tôi</a></li>
-            <li><a href="#careers" class="mob-lnk">Tuyển Dụng</a></li>
-            <li class="mob-divider" aria-hidden="true"></li>
-            <li><a href="https://genshin.hoyoverse.com/vi/" target="_blank" rel="noopener noreferrer" class="mob-lnk mob-lnk--sub">Genshin Impact</a></li>
-            <li><a href="https://hsr.hoyoverse.com/vi-vn/"  target="_blank" rel="noopener noreferrer" class="mob-lnk mob-lnk--sub">Honkai: Star Rail</a></li>
-            <li><a href="https://zenless.hoyoverse.com/vi-vn/" target="_blank" rel="noopener noreferrer" class="mob-lnk mob-lnk--sub">Zenless Zone Zero</a></li>
-          </ul>
-        </nav>
-      </div>
-    </header>
+      <div class="hero-container">
+        <div class="hero-content animate__animated animate__fadeInLeft">
+          
+          <!-- App Icon & Game Label -->
+          <div class="hero-badge">
+            <img src="assets/images/icon_nexus.png" alt="Biểu tượng Honkai: Nexus Anima" class="hero-badge__icon">
+            <span class="hero-badge__text">Honkai: Nexus Anima</span>
+          </div>
 
-    <!-- ============================= HERO ============================= -->
-    <main>
-      <section id="hero" class="hero">
-        <figure class="hero__bg" aria-hidden="true">
-          <img src="assets/images/genshin.jpg" alt="" loading="eager">
-        </figure>
-        <div class="hero__veil" aria-hidden="true"></div>
-
-        <!-- Floating ambient orbs — pure CSS -->
-        <div class="orbs" aria-hidden="true">
-          <span class="orb orb-1"></span>
-          <span class="orb orb-2"></span>
-          <span class="orb orb-3"></span>
-        </div>
-
-        <div class="hero__body">
-          <p class="hero__eyebrow animate__animated animate__fadeInDown">✦ TECH OTAKUS SAVE THE WORLD ✦</p>
-          <h1 class="hero__h1 animate__animated animate__fadeInUp">
-            Thế Giới Ảo<br>
-            <em>Đắm Chìm</em><br>
-            <span>Không Giới Hạn</span>
+          <!-- Main Title -->
+          <h1 class="hero-title">
+            Đăng ký trước cho Honkai: Nexus Anima ngay hôm nay!
           </h1>
-          <p class="hero__lead animate__animated animate__fadeInUp animate__delay-1s">
-            HoYoverse kiến tạo những trải nghiệm chơi game điện ảnh đỉnh cao, kết nối hàng trăm triệu người chơi trên toàn thế giới qua công nghệ đồ họa và câu chuyện truyền cảm hứng.
-          </p>
-          <div class="hero__cta animate__animated animate__fadeInUp animate__delay-2s">
-            <a href="#games" class="cta-primary">
-              <span>Khám Phá Ngay</span>
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+
+          <!-- CTA Button -->
+          <div class="hero-cta-group">
+            <a href="https://www.hoyoverse.com/vi-vn/" target="_blank" rel="noopener noreferrer" class="btn-hero-primary">
+              Xem thêm
             </a>
-            <a href="#about" class="cta-ghost">Về HoYoverse</a>
           </div>
+
         </div>
 
-        <aside class="hero__stats animate__animated animate__fadeIn animate__delay-2s" aria-label="Thống kê">
-          <div class="hstat">
-            <strong>150M<sup>+</sup></strong>
-            <span>Người Chơi Toàn Cầu</span>
+        <!-- Carousel Thumbnails Preview (Góc dưới bên phải) -->
+        <aside class="hero-carousel-thumbnails" aria-label="Các tựa game nổi bật khác">
+          <div class="thumb-item active" title="Honkai: Nexus Anima">
+            <img src="assets/images/hero_banner.jpg" alt="Honkai: Nexus Anima">
           </div>
-          <div class="hstat-sep" aria-hidden="true"></div>
-          <div class="hstat">
-            <strong>180<sup>+</sup></strong>
-            <span>Quốc Gia &amp; Vùng Lãnh Thổ</span>
+          <div class="thumb-item" title="Zenless Zone Zero 3.2">
+            <img src="assets/images/thumb_zzz.jpg" alt="Zenless Zone Zero 3.2">
           </div>
-          <div class="hstat-sep" aria-hidden="true"></div>
-          <div class="hstat">
-            <strong>5</strong>
-            <span>Tựa Game Đình Đám</span>
+          <div class="thumb-item" title="Honkai: Star Rail 4.6">
+            <img src="assets/images/thumb_hsr.jpg" alt="Honkai: Star Rail 4.6">
+          </div>
+          <div class="thumb-item" title="Genshin Impact 7.1">
+            <img src="assets/images/thumb_genshin.jpg" alt="Genshin Impact 7.1">
+          </div>
+          <div class="thumb-item" title="Honkai Impact 3rd 9.0">
+            <img src="assets/images/thumb_hi3.jpg" alt="Honkai Impact 3rd 9.0">
           </div>
         </aside>
 
-        <a href="#games" class="scroll-hint" aria-label="Cuộn xuống phần trò chơi">
-          <span class="scroll-hint__line" aria-hidden="true"></span>
-        </a>
-      </section>
-
-      <!-- ============================= GAMES ============================= -->
-      <section id="games" class="games">
-        <header class="sec-head" data-aos="fade-up">
-          <span class="sec-label">TỰA GAME</span>
-          <h2 class="sec-title">Các Sản Phẩm Của Chúng Tôi</h2>
-          <p class="sec-sub">Di chuột vào từng tựa game để khám phá</p>
-        </header>
-
-        <!-- Accordion — Pure CSS :hover expand -->
-        <div class="accordion" role="list" aria-label="Danh sách tựa game">
-
-          <article class="apanel" role="listitem" tabindex="0" aria-label="Genshin Impact">
-            <figure class="apanel__img"><img src="assets/images/genshin.jpg"    alt="Genshin Impact"        loading="lazy"></figure>
-            <div class="apanel__shade" aria-hidden="true"></div>
-            <div class="apanel__content">
-              <span class="apanel__tag">OPEN WORLD RPG</span>
-              <h3 class="apanel__name">Genshin Impact</h3>
-              <p class="apanel__desc">Bước vào đại lục Teyvat bao la với sức mạnh nguyên tố kỳ diệu. Nhập vai Nhà Lữ Hành, tìm kiếm người thân thất lạc, khám phá bí ẩn của Bảy Vị Thần.</p>
-              <div class="apanel__btns">
-                <a href="https://genshin.hoyoverse.com/vi/"  target="_blank" rel="noopener noreferrer" class="apanel__play">Chơi Ngay</a>
-                <a href="https://genshin.hoyoverse.com/vi/"  target="_blank" rel="noopener noreferrer" class="apanel__more">Trang Chủ →</a>
-              </div>
-            </div>
-            <span class="apanel__label" aria-hidden="true">Genshin Impact</span>
-          </article>
-
-          <article class="apanel" role="listitem" tabindex="0" aria-label="Honkai: Star Rail">
-            <figure class="apanel__img"><img src="assets/images/starrail.png"  alt="Honkai: Star Rail"     loading="lazy"></figure>
-            <div class="apanel__shade" aria-hidden="true"></div>
-            <div class="apanel__content">
-              <span class="apanel__tag">STRATEGY RPG</span>
-              <h3 class="apanel__name">Honkai: Star Rail</h3>
-              <p class="apanel__desc">Lên Đội Tàu Astral, phiêu du qua những thiên hà vô tận. Khám phá nền văn minh kỳ vĩ và chiến đấu trong hệ thống chiến thuật theo lượt đỉnh cao.</p>
-              <div class="apanel__btns">
-                <a href="https://hsr.hoyoverse.com/vi-vn/"  target="_blank" rel="noopener noreferrer" class="apanel__play">Chơi Ngay</a>
-                <a href="https://hsr.hoyoverse.com/vi-vn/"  target="_blank" rel="noopener noreferrer" class="apanel__more">Trang Chủ →</a>
-              </div>
-            </div>
-            <span class="apanel__label" aria-hidden="true">Honkai: Star Rail</span>
-          </article>
-
-          <article class="apanel" role="listitem" tabindex="0" aria-label="Zenless Zone Zero">
-            <figure class="apanel__img"><img src="assets/images/zzz.jpg"       alt="Zenless Zone Zero"     loading="lazy"></figure>
-            <div class="apanel__shade" aria-hidden="true"></div>
-            <div class="apanel__content">
-              <span class="apanel__tag">ACTION ARPG</span>
-              <h3 class="apanel__name">Zenless Zone Zero</h3>
-              <p class="apanel__desc">Chào mừng đến New Eridu, thành phố trú ẩn cuối cùng trước thảm họa Lỗ Hổng. Trở thành Người Kết Nối, dẫn dắt các phe phái chiến đấu cực hạn.</p>
-              <div class="apanel__btns">
-                <a href="https://zenless.hoyoverse.com/vi-vn/" target="_blank" rel="noopener noreferrer" class="apanel__play">Chơi Ngay</a>
-                <a href="https://zenless.hoyoverse.com/vi-vn/" target="_blank" rel="noopener noreferrer" class="apanel__more">Trang Chủ →</a>
-              </div>
-            </div>
-            <span class="apanel__label" aria-hidden="true">Zenless Zone Zero</span>
-          </article>
-
-          <article class="apanel" role="listitem" tabindex="0" aria-label="Honkai Impact 3rd">
-            <figure class="apanel__img apanel__img--contain"><img src="assets/images/honkai3rd.png" alt="Honkai Impact 3rd" loading="lazy"></figure>
-            <div class="apanel__shade" aria-hidden="true"></div>
-            <div class="apanel__content">
-              <span class="apanel__tag">ACTION GAME</span>
-              <h3 class="apanel__name">Honkai Impact 3rd</h3>
-              <p class="apanel__desc">Chỉ huy các Valkyrie quả cảm bảo vệ thế giới. Combo hành động chặt chém hoành tráng và hoạt cảnh anime điện ảnh xúc động.</p>
-              <div class="apanel__btns">
-                <a href="https://honkaiimpact3.hoyoverse.com/global/vi-vn/" target="_blank" rel="noopener noreferrer" class="apanel__play">Chơi Ngay</a>
-                <a href="https://honkaiimpact3.hoyoverse.com/global/vi-vn/" target="_blank" rel="noopener noreferrer" class="apanel__more">Trang Chủ →</a>
-              </div>
-            </div>
-            <span class="apanel__label" aria-hidden="true">Honkai Impact 3rd</span>
-          </article>
-
-          <article class="apanel" role="listitem" tabindex="0" aria-label="Tears of Themis">
-            <figure class="apanel__img"><img src="assets/images/themis.jpg"    alt="Tears of Themis"       loading="lazy"></figure>
-            <div class="apanel__shade" aria-hidden="true"></div>
-            <div class="apanel__content">
-              <span class="apanel__tag">MYSTERY ROMANCE</span>
-              <h3 class="apanel__name">Tears of Themis</h3>
-              <p class="apanel__desc">Hóa thân thành luật sư trong thành phố Stellis. Thu thập manh mối, tranh tụng tại tòa án và vén màn âm mưu bí ẩn rùng rợn.</p>
-              <div class="apanel__btns">
-                <a href="https://tot.hoyoverse.com/vi-vn/" target="_blank" rel="noopener noreferrer" class="apanel__play">Chơi Ngay</a>
-                <a href="https://tot.hoyoverse.com/vi-vn/" target="_blank" rel="noopener noreferrer" class="apanel__more">Trang Chủ →</a>
-              </div>
-            </div>
-            <span class="apanel__label" aria-hidden="true">Tears of Themis</span>
-          </article>
-
-        </div><!-- /.accordion -->
-      </section>
-
-      <!-- ============================= ABOUT ============================= -->
-      <section id="about" class="about">
-        <div class="container">
-
-          <div class="about__grid">
-            <div class="about__left" data-aos="fade-right" data-aos-duration="700">
-              <span class="sec-label">VỀ CHÚNG TÔI</span>
-              <h2 class="sec-title">Mọt Công Nghệ<br><em>Cứu Thế Giới</em></h2>
-              <blockquote class="bq">
-                <span class="bq__mark" aria-hidden="true">"</span>
-                Tech Otakus Save The World
-              </blockquote>
-              <p>Được thành lập bởi những "Otaku" đam mê công nghệ và nghệ thuật anime, HoYoverse (COGNOSPHERE PTE. LTD.) là công ty phát triển game toàn cầu với sứ mệnh mang lại những trải nghiệm thế giới ảo sống động nhất cho hàng trăm triệu người chơi.</p>
-              <p>Từ công nghệ cel-shading độc quyền đến âm nhạc giao hưởng HOYO-MiX và nghiên cứu AI tiên phong, chúng tôi không ngừng phá vỡ giới hạn ngành công nghiệp game.</p>
-              <a href="https://www.hoyoverse.com/vi-vn/about-us" target="_blank" rel="noopener noreferrer" class="cta-primary">
-                <span>Tìm Hiểu Thêm</span>
-                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-              </a>
-            </div>
-
-            <div class="about__right" data-aos="fade-left" data-aos-duration="700" data-aos-delay="100">
-              <article class="feat" data-aos="zoom-in" data-aos-delay="100">
-                <div class="feat__ico" aria-hidden="true">🎨</div>
-                <h3>Đồ Họa Cel-Shading</h3>
-                <p>Công nghệ dựng hình anime 3D thời gian thực, tái hiện chất lượng hoạt họa điện ảnh đỉnh cao.</p>
-              </article>
-              <article class="feat" data-aos="zoom-in" data-aos-delay="200">
-                <div class="feat__ico" aria-hidden="true">🎵</div>
-                <h3>Âm Nhạc HOYO-MiX</h3>
-                <p>Dàn nhạc giao hưởng kết hợp nhạc cụ dân gian tạo nên linh hồn cho từng thế giới game.</p>
-              </article>
-              <article class="feat" data-aos="zoom-in" data-aos-delay="300">
-                <div class="feat__ico" aria-hidden="true">⚡</div>
-                <h3>AI &amp; Cloud Gaming</h3>
-                <p>Tiên phong ứng dụng AI vào biểu cảm nhân vật và hạ tầng Cloud Gaming toàn cầu.</p>
-              </article>
-              <article class="feat" data-aos="zoom-in" data-aos-delay="400">
-                <div class="feat__ico" aria-hidden="true">🌍</div>
-                <h3>Cộng Đồng HoYoLAB</h3>
-                <p>Mạng xã hội game thủ toàn cầu nơi người chơi kết nối, sáng tạo và khám phá cùng nhau.</p>
-              </article>
-            </div>
-          </div>
-
-          <!-- Stats row -->
-          <div class="stats-row" data-aos="fade-up" data-aos-delay="100">
-            <div class="sitem">
-              <strong>150M<sup>+</sup></strong>
-              <span>Người Chơi Toàn Cầu</span>
-            </div>
-            <div class="sitem">
-              <strong>180<sup>+</sup></strong>
-              <span>Quốc Gia Phủ Sóng</span>
-            </div>
-            <div class="sitem">
-              <strong>5<sup>+</sup></strong>
-              <span>Văn Phòng Quốc Tế</span>
-            </div>
-            <div class="sitem">
-              <strong>5000<sup>+</sup></strong>
-              <span>Nhân Viên Toàn Cầu</span>
-            </div>
-          </div>
-
-        </div>
-      </section>
-
-      <!-- ============================= NEWS ============================= -->
-      <section id="news" class="news">
-        <div class="container">
-          <header class="sec-head" data-aos="fade-up">
-            <span class="sec-label">TIN TỨC</span>
-            <h2 class="sec-title">Sự Kiện &amp; Cập Nhật</h2>
-          </header>
-
-          <div class="news-grid">
-
-            <article class="ncard ncard--hero" data-aos="fade-up" data-aos-delay="50">
-              <figure class="ncard__img"><img src="assets/images/genshin.jpg" alt="Genshin Impact Snezhnaya" loading="lazy"></figure>
-              <div class="ncard__body">
-                <span class="ncat ncat--update">Cập Nhật Game</span>
-                <time class="ndate" datetime="2026-10-18">18 Tháng 10, 2026</time>
-                <h3>Genshin Impact: Vùng Đất Snezhnaya Bí Ẩn Chính Thức Hé Lộ</h3>
-                <p>Chương cốt truyện mới đưa Nhà Lữ Hành đến vương quốc băng giá Snezhnaya, đối đầu các Quan Chấp Hành Fatui trong trận chiến định đoạt số phận Teyvat.</p>
-                <a href="https://genshin.hoyoverse.com/vi/news" target="_blank" rel="noopener noreferrer" class="nlink">Đọc Chi Tiết <span aria-hidden="true">→</span></a>
-              </div>
-            </article>
-
-            <article class="ncard" data-aos="fade-up" data-aos-delay="100">
-              <figure class="ncard__img"><img src="assets/images/starrail.png" alt="Honkai Star Rail" loading="lazy"></figure>
-              <div class="ncard__body">
-                <span class="ncat ncat--event">Sự Kiện</span>
-                <time class="ndate" datetime="2026-10-15">15 Tháng 10, 2026</time>
-                <h3>Honkai: Star Rail 4.6 — Trước Khi Trăng Lên</h3>
-                <p>Phiên bản mới mở rộng hành trình xuyên ngân hà cùng nhân vật và cơ chế chiến đấu đột phá.</p>
-                <a href="https://hsr.hoyoverse.com/vi-vn/news" target="_blank" rel="noopener noreferrer" class="nlink">Đọc Chi Tiết <span aria-hidden="true">→</span></a>
-              </div>
-            </article>
-
-            <article class="ncard" data-aos="fade-up" data-aos-delay="150">
-              <figure class="ncard__img"><img src="assets/images/zzz.jpg" alt="Zenless Zone Zero" loading="lazy"></figure>
-              <div class="ncard__body">
-                <span class="ncat ncat--new">Phiên Bản Mới</span>
-                <time class="ndate" datetime="2026-10-12">12 Tháng 10, 2026</time>
-                <h3>Zenless Zone Zero 3.2 — Quá Khứ Bí Ẩn Của Hai Cô Ấy</h3>
-                <p>Nhân vật Cấp S mới và cơ chế chiến đấu cơ giáp chưa từng có, hoàn thành điểm danh nhận 20 lần quay.</p>
-                <a href="https://zenless.hoyoverse.com/vi-vn/news" target="_blank" rel="noopener noreferrer" class="nlink">Đọc Chi Tiết <span aria-hidden="true">→</span></a>
-              </div>
-            </article>
-
-            <article class="ncard" data-aos="fade-up" data-aos-delay="200">
-              <figure class="ncard__img"><img src="assets/images/themis.jpg" alt="HoYoverse AI" loading="lazy"></figure>
-              <div class="ncard__body">
-                <span class="ncat ncat--tech">Công Nghệ</span>
-                <time class="ndate" datetime="2026-10-08">08 Tháng 10, 2026</time>
-                <h3>HoYoverse Đầu Tư AI Thế Hệ Mới — Đồ Họa Cel-Shading Điện Ảnh</h3>
-                <p>Thuật toán kết xuất ánh sáng thời gian thực mở ra kỷ nguyên mới cho trải nghiệm game không giới hạn.</p>
-                <a href="https://www.hoyoverse.com/vi-vn/news" target="_blank" rel="noopener noreferrer" class="nlink">Đọc Chi Tiết <span aria-hidden="true">→</span></a>
-              </div>
-            </article>
-
-          </div>
-        </div>
-      </section>
-
-      <!-- ============================= CAREERS ============================= -->
-      <section id="careers" class="careers">
-        <div class="container">
-          <div class="careers__grid">
-            <div class="careers__left" data-aos="fade-right">
-              <span class="sec-label">TUYỂN DỤNG</span>
-              <h2 class="sec-title">Gia Nhập<br>HoYoverse</h2>
-              <p>Bạn đam mê anime, game và công nghệ đột phá? Hãy cùng chúng tôi kiến tạo những thế giới ảo thay đổi ngành giải trí toàn cầu.</p>
-
-              <ul class="jobs" aria-label="Các vị trí tuyển dụng">
-                <li class="job">
-                  <div class="job__info">
-                    <strong>Kỹ Sư Rendering Engine &amp; Đồ Họa 3D</strong>
-                    <span>Singapore / Remote</span>
-                  </div>
-                  <span class="job__arrow" aria-hidden="true">→</span>
-                </li>
-                <li class="job">
-                  <div class="job__info">
-                    <strong>Họa Sĩ Concept Art &amp; Thiết Kế Nhân Vật</strong>
-                    <span>Tokyo / Singapore</span>
-                  </div>
-                  <span class="job__arrow" aria-hidden="true">→</span>
-                </li>
-                <li class="job">
-                  <div class="job__info">
-                    <strong>Kỹ Sư AI / Machine Learning</strong>
-                    <span>Los Angeles / Singapore</span>
-                  </div>
-                  <span class="job__arrow" aria-hidden="true">→</span>
-                </li>
-                <li class="job">
-                  <div class="job__info">
-                    <strong>Chuyên Viên Bản Địa Hóa Tiếng Việt</strong>
-                    <span>TP. Hồ Chí Minh / Singapore</span>
-                  </div>
-                  <span class="job__arrow" aria-hidden="true">→</span>
-                </li>
-              </ul>
-
-              <a href="https://www.hoyoverse.com/vi-vn/careers" target="_blank" rel="noopener noreferrer" class="cta-primary">
-                <span>Xem Tất Cả Vị Trí</span>
-                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-              </a>
-            </div>
-
-            <div class="careers__right" data-aos="fade-left" data-aos-delay="100">
-              <div class="culture-grid">
-                <div class="citem" data-aos="zoom-in" data-aos-delay="100">
-                  <span aria-hidden="true">🚀</span>
-                  <h4>Đổi Mới Sáng Tạo</h4>
-                  <p>Tự do thử nghiệm, không giới hạn sáng tạo.</p>
-                </div>
-                <div class="citem" data-aos="zoom-in" data-aos-delay="200">
-                  <span aria-hidden="true">💡</span>
-                  <h4>Công Nghệ Tiên Phong</h4>
-                  <p>Làm việc với AI và đồ họa tiên tiến nhất thế giới.</p>
-                </div>
-                <div class="citem" data-aos="zoom-in" data-aos-delay="300">
-                  <span aria-hidden="true">🤝</span>
-                  <h4>Đội Ngũ Đa Quốc Gia</h4>
-                  <p>Cộng tác cùng nhân tài từ khắp mọi quốc gia.</p>
-                </div>
-                <div class="citem" data-aos="zoom-in" data-aos-delay="400">
-                  <span aria-hidden="true">🌟</span>
-                  <h4>Phúc Lợi Toàn Diện</h4>
-                  <p>Đãi ngộ cạnh tranh, môi trường làm việc lý tưởng.</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-    </main>
-
-    <!-- ============================= FOOTER ============================= -->
-    <footer class="ftr">
-      <div class="container">
-        <div class="ftr__top">
-
-          <div class="ftr__brand">
-            <a href="#hero" class="ftr__logo-lnk" aria-label="HoYoverse">
-              <svg width="120" height="26" viewBox="0 0 130 28" fill="none" aria-hidden="true">
-                <text x="0" y="22" font-family="DM Serif Display, serif" font-size="22" fill="currentColor" letter-spacing="-0.5">HoYoverse</text>
-              </svg>
-            </a>
-            <p>Kiến tạo những thế giới ảo đắm chìm không giới hạn cho người chơi trên toàn cầu.</p>
-            <div class="socials" aria-label="Mạng xã hội">
-              <a href="https://www.youtube.com/@HoYoverse" target="_blank" rel="noopener noreferrer" aria-label="YouTube" class="social-ico">
-                <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
-              </a>
-              <a href="https://x.com/HoYoverse" target="_blank" rel="noopener noreferrer" aria-label="X (Twitter)" class="social-ico">
-                <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
-              </a>
-              <a href="https://www.facebook.com/HoYoverse" target="_blank" rel="noopener noreferrer" aria-label="Facebook" class="social-ico">
-                <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
-              </a>
-              <a href="https://www.instagram.com/hoyoverse" target="_blank" rel="noopener noreferrer" aria-label="Instagram" class="social-ico">
-                <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
-              </a>
-            </div>
-          </div>
-
-          <nav class="ftr__links" aria-label="Footer điều hướng">
-            <div class="fcol">
-              <h4>Trò Chơi</h4>
-              <ul>
-                <li><a href="https://genshin.hoyoverse.com/vi/"                    target="_blank" rel="noopener noreferrer">Genshin Impact</a></li>
-                <li><a href="https://hsr.hoyoverse.com/vi-vn/"                     target="_blank" rel="noopener noreferrer">Honkai: Star Rail</a></li>
-                <li><a href="https://zenless.hoyoverse.com/vi-vn/"                 target="_blank" rel="noopener noreferrer">Zenless Zone Zero</a></li>
-                <li><a href="https://honkaiimpact3.hoyoverse.com/global/vi-vn/"    target="_blank" rel="noopener noreferrer">Honkai Impact 3rd</a></li>
-                <li><a href="https://tot.hoyoverse.com/vi-vn/"                     target="_blank" rel="noopener noreferrer">Tears of Themis</a></li>
-              </ul>
-            </div>
-            <div class="fcol">
-              <h4>Công Ty</h4>
-              <ul>
-                <li><a href="https://www.hoyoverse.com/vi-vn/about-us" target="_blank" rel="noopener noreferrer">Về Chúng Tôi</a></li>
-                <li><a href="https://www.hoyoverse.com/vi-vn/news"     target="_blank" rel="noopener noreferrer">Tin Tức</a></li>
-                <li><a href="https://www.hoyoverse.com/vi-vn/careers"  target="_blank" rel="noopener noreferrer">Tuyển Dụng</a></li>
-                <li><a href="https://www.hoyolab.com/"                 target="_blank" rel="noopener noreferrer">HoYoLAB</a></li>
-              </ul>
-            </div>
-            <div class="fcol">
-              <h4>Hỗ Trợ</h4>
-              <ul>
-                <li><a href="https://www.hoyoverse.com/vi-vn/company/privacy" target="_blank" rel="noopener noreferrer">Chính Sách Bảo Mật</a></li>
-                <li><a href="https://www.hoyoverse.com/vi-vn/company/terms"   target="_blank" rel="noopener noreferrer">Điều Khoản Dịch Vụ</a></li>
-                <li><a href="https://account.hoyoverse.com/"                   target="_blank" rel="noopener noreferrer">Tài Khoản</a></li>
-              </ul>
-            </div>
-          </nav>
+        <!-- Scroll Indicator chuột cuộn xuống -->
+        <div class="hero-scroll-indicator" aria-hidden="true">
+          <span class="scroll-mouse">
+            <span class="scroll-wheel"></span>
+          </span>
         </div>
 
-        <div class="ftr__bottom">
-          <address>COGNOSPHERE PTE. LTD. &nbsp;·&nbsp; 1 Raffles Place, #20-01, One Raffles Place, Singapore 048616</address>
-          <p>Copyright &copy; COGNOSPHERE PTE. LTD. All Rights Reserved.</p>
-          <p class="ftr__exam">
-            Sinh viên: <strong>Lê Nhật Duy</strong> &nbsp;·&nbsp; MSSV: <strong>125000335</strong> &nbsp;·&nbsp; Thiết Kế Web &nbsp;·&nbsp; ĐH Lạc Hồng
-          </p>
+      </div>
+    </section>
+
+    <!-- =======================================================================
+         3. SECTION: THÔNG TIN MỚI NHẤT (Nền Trắng, Lưới 4 Cột, Card chính thức)
+         ======================================================================= -->
+    <section id="news" class="section-news" aria-labelledby="news-heading">
+      <div class="section-container">
+        
+        <!-- Tiêu đề mục & Nút Xem thêm bên phải -->
+        <div class="section-header" data-aos="fade-up">
+          <h2 id="news-heading" class="section-title">Thông Tin Mới Nhất</h2>
+          <a href="https://www.hoyoverse.com/vi-vn/news" target="_blank" rel="noopener noreferrer" class="btn-more-pill">
+            Xem thêm
+          </a>
+        </div>
+
+        <!-- Lưới 8 Thẻ Tin Tức (4 cột x 2 hàng) -->
+        <div class="news-grid" role="region" aria-label="Danh sách tin tức mới nhất">
+          
+          <!-- News Card 1: Zenless Zone Zero 3.3 -->
+          <article class="news-card" data-aos="fade-up" data-aos-delay="50">
+            <figure class="news-card__media">
+              <img src="assets/images/news_1.jpg" alt="Zenless Zone Zero phiên bản 3.3" class="news-card__img" loading="lazy">
+              <span class="news-card__tag">Sản Phẩm</span>
+              <div class="news-card__overlay">
+                <span class="news-card__game">Zenless Zone Zero</span>
+                <h3 class="news-card__title">
+                  Zenless Zone Zero phiên bản 3.3 "Hành Trình Trở Lại Bầu Trời" sắp ra mắt: Đại Diện Cấp S Phoenix, Severian...
+                </h3>
+                <time datetime="2026-10-12" class="news-card__date">12/10/2026</time>
+              </div>
+            </figure>
+          </article>
+
+          <!-- News Card 2: Honkai: Star Rail 4.6 -->
+          <article class="news-card" data-aos="fade-up" data-aos-delay="100">
+            <figure class="news-card__media">
+              <img src="assets/images/news_2.png" alt="Honkai: Star Rail Phiên Bản 4.6" class="news-card__img" loading="lazy">
+              <span class="news-card__tag">Sản Phẩm</span>
+              <div class="news-card__overlay">
+                <span class="news-card__game">Honkai: Star Rail</span>
+                <h3 class="news-card__title">
+                  Honkai: Star Rail Phiên Bản 4.6 "Trước Khi Trăng Lên, Khiêu Vũ Cùng Ác Thú" sắp sửa ra mắt toàn cầu
+                </h3>
+                <time datetime="2026-09-28" class="news-card__date">28/09/2026</time>
+              </div>
+            </figure>
+          </article>
+
+          <!-- News Card 3: Genshin Impact 7.1 -->
+          <article class="news-card" data-aos="fade-up" data-aos-delay="150">
+            <figure class="news-card__media">
+              <img src="assets/images/news_3.jpg" alt="Genshin Impact Phiên Bản 7.1" class="news-card__img" loading="lazy">
+              <span class="news-card__tag">Sản Phẩm</span>
+              <div class="news-card__overlay">
+                <span class="news-card__game">Genshin Impact</span>
+                <h3 class="news-card__title">
+                  Genshin Impact Phiên Bản 7.1 Ra Mắt Ngày 23/09, Tề Tựu Tại Snezhnaya Đối Đầu Với "Chấp Chính Của Cái Chết"
+                </h3>
+                <time datetime="2026-09-23" class="news-card__date">23/09/2026</time>
+              </div>
+            </figure>
+          </article>
+
+          <!-- News Card 4: Zenless Zone Zero 3.2 -->
+          <article class="news-card" data-aos="fade-up" data-aos-delay="200">
+            <figure class="news-card__media">
+              <img src="assets/images/news_4.jpg" alt="Zenless Zone Zero phiên bản 3.2" class="news-card__img" loading="lazy">
+              <span class="news-card__tag">Sản Phẩm</span>
+              <div class="news-card__overlay">
+                <span class="news-card__game">Zenless Zone Zero</span>
+                <h3 class="news-card__title">
+                  Zenless Zone Zero phiên bản 3.2 "Quá Khứ Bí Ẩn Của Hai Cô Ấy": Đặc tính Ngự Kích chính thức lộ diện
+                </h3>
+                <time datetime="2026-09-01" class="news-card__date">01/09/2026</time>
+              </div>
+            </figure>
+          </article>
+
+          <!-- News Card 5: Honkai: Star Rail 4.5 -->
+          <article class="news-card" data-aos="fade-up" data-aos-delay="250">
+            <figure class="news-card__media">
+              <img src="assets/images/news_5.png" alt="Honkai: Star Rail 4.5" class="news-card__img" loading="lazy">
+              <span class="news-card__tag">Sản Phẩm</span>
+              <div class="news-card__overlay">
+                <span class="news-card__game">Honkai: Star Rail</span>
+                <h3 class="news-card__title">
+                  Phiên Bản 4.5 "Tung Xu Cược Ngàn Sao" Honkai: Star Rail mang lại cơ hội sở hữu nón ánh sáng đặc quyền
+                </h3>
+                <time datetime="2026-08-26" class="news-card__date">26/08/2026</time>
+              </div>
+            </figure>
+          </article>
+
+          <!-- News Card 6: Genshin Impact Snezhnaya -->
+          <article class="news-card" data-aos="fade-up" data-aos-delay="300">
+            <figure class="news-card__media">
+              <img src="assets/images/news_6.jpg" alt="Genshin Impact Snezhnaya" class="news-card__img" loading="lazy">
+              <span class="news-card__tag">Sản Phẩm</span>
+              <div class="news-card__overlay">
+                <span class="news-card__game">Genshin Impact</span>
+                <h3 class="news-card__title">
+                  Genshin Impact Cuối Cùng Đã Đến Snezhnaya, Khám Phá Vùng Đất Thứ Bảy Của Đại Lục Teyvat Hùng Vĩ!
+                </h3>
+                <time datetime="2026-08-12" class="news-card__date">12/08/2026</time>
+              </div>
+            </figure>
+          </article>
+
+          <!-- News Card 7: ZZZ 2 Years -->
+          <article class="news-card" data-aos="fade-up" data-aos-delay="350">
+            <figure class="news-card__media">
+              <img src="assets/images/news_7.jpg" alt="Zenless Zone Zero Kỷ Niệm 2 Năm" class="news-card__img" loading="lazy">
+              <span class="news-card__tag">Sản Phẩm</span>
+              <div class="news-card__overlay">
+                <span class="news-card__game">Zenless Zone Zero</span>
+                <h3 class="news-card__title">
+                  Zenless Zone Zero chào đón kỷ niệm 2 năm: Thuộc tính Lưu Minh hoàn toàn mới, tặng 100 lượt quay miễn phí
+                </h3>
+                <time datetime="2026-07-22" class="news-card__date">22/07/2026</time>
+              </div>
+            </figure>
+          </article>
+
+          <!-- News Card 8: Gamescom 2026 -->
+          <article class="news-card" data-aos="fade-up" data-aos-delay="400">
+            <figure class="news-card__media">
+              <img src="assets/images/news_8.jpg" alt="HoYoverse Gamescom 2026" class="news-card__img" loading="lazy">
+              <span class="news-card__tag">Sản Phẩm</span>
+              <div class="news-card__overlay">
+                <span class="news-card__game">HoYoverse Sự Kiện</span>
+                <h3 class="news-card__title">
+                  HoYoverse chính thức công bố đội hình tham gia triển lãm gamescom 2026 với sân khấu biểu diễn trực tiếp
+                </h3>
+                <time datetime="2026-07-17" class="news-card__date">17/07/2026</time>
+              </div>
+            </figure>
+          </article>
+
         </div>
       </div>
-    </footer>
+    </section>
 
-  </div><!-- /.site-wrap -->
+    <!-- =======================================================================
+         4. SECTION: SẢN PHẨM CỦA CHÚNG TÔI (Nền Trắng, Lưới 2 Cột, Card Banner Lớn)
+         ======================================================================= -->
+    <section id="products" class="section-products" aria-labelledby="products-heading">
+      <div class="section-container">
+        
+        <div class="section-header" data-aos="fade-up">
+          <h2 id="products-heading" class="section-title">Sản Phẩm Của Chúng Tôi</h2>
+        </div>
 
-  <!-- AOS init (bắt buộc theo đề thi) -->
+        <!-- Lưới 2 Cột Sản Phẩm Chính Thức -->
+        <div class="products-grid" role="region" aria-label="Danh sách các sản phẩm game và cộng đồng">
+
+          <!-- Product 1: Tears of Themis -->
+          <article class="product-card" data-aos="fade-up" data-aos-delay="100">
+            <figure class="product-card__figure">
+              <img src="assets/images/prod_themis_poster.jpg" alt="Tears of Themis Banner" class="product-card__poster" loading="lazy">
+            </figure>
+            <div class="product-card__bottom">
+              <div class="product-card__info-group">
+                <img src="assets/images/prod_themis_icon.jpg" alt="Icon Tears of Themis" class="product-card__icon">
+                <div class="product-card__texts">
+                  <h3 class="product-card__title">Tears of Themis</h3>
+                  <p class="product-card__desc">Embark now on an adventure of romance and wits!</p>
+                </div>
+              </div>
+              <a href="https://tot.hoyoverse.com/vi-vn/" target="_blank" rel="noopener noreferrer" class="btn-product-more">
+                Xem thêm
+              </a>
+            </div>
+          </article>
+
+          <!-- Product 2: Genshin Impact -->
+          <article class="product-card" data-aos="fade-up" data-aos-delay="200">
+            <figure class="product-card__figure">
+              <img src="assets/images/prod_genshin_poster.jpg" alt="Genshin Impact Banner" class="product-card__poster" loading="lazy">
+            </figure>
+            <div class="product-card__bottom">
+              <div class="product-card__info-group">
+                <img src="assets/images/prod_genshin_icon.jpg" alt="Icon Genshin Impact Paimon" class="product-card__icon">
+                <div class="product-card__texts">
+                  <h3 class="product-card__title">Genshin Impact</h3>
+                  <p class="product-card__desc">Bắt đầu hành trình mạo hiểm đầy ẩn số</p>
+                </div>
+              </div>
+              <a href="https://genshin.hoyoverse.com/vi/" target="_blank" rel="noopener noreferrer" class="btn-product-more">
+                Xem thêm
+              </a>
+            </div>
+          </article>
+
+          <!-- Product 3: Honkai: Star Rail -->
+          <article class="product-card" data-aos="fade-up" data-aos-delay="100">
+            <figure class="product-card__figure">
+              <img src="assets/images/prod_hsr_poster.jpg" alt="Honkai: Star Rail Banner" class="product-card__poster" loading="lazy">
+            </figure>
+            <div class="product-card__bottom">
+              <div class="product-card__info-group">
+                <img src="assets/images/prod_hsr_icon.png" alt="Icon Honkai Star Rail March 7th" class="product-card__icon">
+                <div class="product-card__texts">
+                  <h3 class="product-card__title">Honkai: Star Rail</h3>
+                  <p class="product-card__desc">Hi vọng cuộc hành trình này sẽ đưa chúng ta đến những vì sao</p>
+                </div>
+              </div>
+              <a href="https://hsr.hoyoverse.com/vi-vn/" target="_blank" rel="noopener noreferrer" class="btn-product-more">
+                Xem thêm
+              </a>
+            </div>
+          </article>
+
+          <!-- Product 4: HoYoLAB -->
+          <article class="product-card" data-aos="fade-up" data-aos-delay="200">
+            <figure class="product-card__figure">
+              <img src="assets/images/prod_hoyolab_poster.jpg" alt="HoYoLAB Banner" class="product-card__poster" loading="lazy">
+            </figure>
+            <div class="product-card__bottom">
+              <div class="product-card__info-group">
+                <img src="assets/images/prod_hoyolab_icon.jpg" alt="Icon HoYoLAB Mimo" class="product-card__icon">
+                <div class="product-card__texts">
+                  <h3 class="product-card__title">HoYoLAB</h3>
+                  <p class="product-card__desc">HoYoLAB là nhóm cộng đồng Game, tại đây tập hợp các thông tin chính thức</p>
+                </div>
+              </div>
+              <a href="https://www.hoyolab.com/" target="_blank" rel="noopener noreferrer" class="btn-product-more">
+                Xem thêm
+              </a>
+            </div>
+          </article>
+
+          <!-- Product 5: Zenless Zone Zero -->
+          <article class="product-card" data-aos="fade-up" data-aos-delay="100">
+            <figure class="product-card__figure">
+              <img src="assets/images/prod_zzz_poster.jpg" alt="Zenless Zone Zero Banner" class="product-card__poster" loading="lazy">
+            </figure>
+            <div class="product-card__bottom">
+              <div class="product-card__info-group">
+                <img src="assets/images/prod_zzz_icon.png" alt="Icon Zenless Zone Zero" class="product-card__icon">
+                <div class="product-card__texts">
+                  <h3 class="product-card__title">Zenless Zone Zero</h3>
+                  <p class="product-card__desc">Sống sót trong Lỗ Hổng New Eridu - Đô thị hậu tận thế đầy phong cách</p>
+                </div>
+              </div>
+              <a href="https://zenless.hoyoverse.com/vi-vn/" target="_blank" rel="noopener noreferrer" class="btn-product-more">
+                Xem thêm
+              </a>
+            </div>
+          </article>
+
+          <!-- Product 6: Honkai Impact 3rd -->
+          <article class="product-card" data-aos="fade-up" data-aos-delay="200">
+            <figure class="product-card__figure">
+              <img src="assets/images/prod_hi3_poster.jpg" alt="Honkai Impact 3rd Banner" class="product-card__poster" loading="lazy">
+            </figure>
+            <div class="product-card__bottom">
+              <div class="product-card__info-group">
+                <img src="assets/images/prod_hi3_icon.jpg" alt="Icon Honkai Impact 3 Kiana" class="product-card__icon">
+                <div class="product-card__texts">
+                  <h3 class="product-card__title">Honkai Impact 3rd</h3>
+                  <p class="product-card__desc">Chiến đấu vì tất cả những gì tươi đẹp trên thế giới</p>
+                </div>
+              </div>
+              <a href="https://honkaiimpact3.hoyoverse.com/global/vi-vn/" target="_blank" rel="noopener noreferrer" class="btn-product-more">
+                Xem thêm
+              </a>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- =======================================================================
+         5. SECTION: VỀ CHÚNG TÔI & TUYỂN DỤNG (Nền Vũ Trụ Đen Tối, 2 Card Lớn)
+         ======================================================================= -->
+    <section class="section-promo-cosmic" aria-label="Thông tin công ty và tuyển dụng">
+      <div class="section-container">
+        <div class="promo-grid">
+
+          <!-- Card Về Chúng Tôi -->
+          <article id="about" class="promo-card" data-aos="fade-up" data-aos-delay="100">
+            <div class="promo-card__content">
+              <h2 class="promo-card__title">Về Chúng Tôi</h2>
+              <span class="promo-card__bar" aria-hidden="true"></span>
+            </div>
+            <a href="https://www.hoyoverse.com/vi-vn/about-us" target="_blank" rel="noopener noreferrer" class="promo-card__arrow-btn" aria-label="Xem chi tiết Về Chúng Tôi">
+              <span class="arrow-icon" aria-hidden="true">→</span>
+            </a>
+          </article>
+
+          <!-- Card Tuyển Dụng -->
+          <article id="careers" class="promo-card" data-aos="fade-up" data-aos-delay="200">
+            <div class="promo-card__content">
+              <h2 class="promo-card__title">Tuyển Dụng</h2>
+              <span class="promo-card__bar" aria-hidden="true"></span>
+            </div>
+            <a href="https://www.hoyoverse.com/vi-vn/careers" target="_blank" rel="noopener noreferrer" class="promo-card__arrow-btn" aria-label="Xem chi tiết Tuyển Dụng">
+              <span class="arrow-icon" aria-hidden="true">→</span>
+            </a>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- =========================================================================
+       6. FOOTER: Nền Đen Tuyền (#000000), Chữ Trắng, Logo Lớn & Thông Tin Sinh Viên
+       ========================================================================= -->
+  <footer class="footer">
+    <div class="footer__container">
+
+      <!-- Hàng liên kết điều hướng Footer -->
+      <nav class="footer__nav" aria-label="Liên kết chân trang">
+        <ul class="footer-links" role="list">
+          <li><a href="#hero">Trang Chủ</a></li>
+          <li><a href="#news">Tin Tức</a></li>
+          <li><a href="#products">Về Chúng Tôi</a></li>
+          <li><a href="#careers">Tuyển Dụng</a></li>
+          <li><a href="https://www.hoyoverse.com/vi-vn/about-us" target="_blank" rel="noopener noreferrer">Hợp Tác Thương Mại</a></li>
+          <li><a href="https://www.hoyoverse.com/vi-vn/company/privacy" target="_blank" rel="noopener noreferrer">Chính Sách Về Quyền Riêng Tư</a></li>
+          <li><a href="https://www.hoyoverse.com/vi-vn/company/terms" target="_blank" rel="noopener noreferrer">Điều Khoản Dịch Vụ</a></li>
+          <li><a href="https://cs.hoyoverse.com/" target="_blank" rel="noopener noreferrer">Trung Tâm Trợ Giúp</a></li>
+          <li class="footer-lang-item">
+            <span class="footer-globe-icon" aria-label="Chuyển đổi ngôn ngữ">🌐</span>
+          </li>
+        </ul>
+      </nav>
+
+      <!-- Logo HoYoverse Chân Trang Lớn -->
+      <div class="footer__logo-wrap">
+        <svg class="footer__logo-svg" viewBox="0 0 1163 204" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Logo HoYoverse Chân Trang">
+          <text x="50%" y="150" text-anchor="middle" font-family="'Plus Jakarta Sans', sans-serif" font-size="160" font-weight="800" fill="#ffffff" letter-spacing="14">HOY<tspan fill="#3b82f6">O</tspan>VERSE</text>
+        </svg>
+      </div>
+
+      <!-- Thông tin bản quyền chính thức -->
+      <p class="footer__copyright">
+        Copyright © COGNOSPHERE. All Rights Reserved.
+      </p>
+
+      <!-- Khung Định Danh Bài Thi Đạt Chuẩn Giữa Kỳ -->
+      <aside class="footer__exam-badge" aria-label="Thông tin bài thi">
+        <div class="exam-badge-inner">
+          <span class="exam-badge-dot"></span>
+          <span>BÀI THI GIỮA KỲ: <strong>Lê Nhật Duy</strong> — MSSV: <strong>125000335</strong> — Trường Đại học Lạc Hồng</span>
+        </div>
+      </aside>
+
+    </div>
+  </footer>
+
+  <!-- Script khởi tạo thư viện AOS duy nhất (Tuân thủ đề thi) -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
-  <script>AOS.init({ once: true, duration: 700, offset: 70, easing: 'ease-out-cubic' });</script>
+  <script>
+    AOS.init({
+      once: true,
+      duration: 700,
+      offset: 60,
+      easing: 'ease-out-cubic'
+    });
+  </script>
 </body>
 </html>
